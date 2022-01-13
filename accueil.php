@@ -13,18 +13,16 @@
     <div id="accueil_banniere">
         <video src="img/Seoul.mp4" controls poster="img/seoul_img.jpg" width="500"></video>
     </div>
-    
-    <body>
-        <!-- l'actualité du site -->
-        <div id="accueil_actualites">
 
-        </div>
+    <!-- l'actualité du site -->
+    <div id="accueil_actualites">
 
-        <!-- les top recettes de la semaine -->
-        <div id="accueil_top_recettes">
+    </div>
 
-        </div>
-    </body>
+    <!-- les top recettes de la semaine -->
+    <div id="accueil_top_recettes">
+
+    </div>
 
     <footer><?php include('includes/footer.php'); ?></footer>
 
