@@ -1,0 +1,24 @@
+/* Banniere */
+
+#accueil_banniere
+{
+    background-image : url("../img/fond.png") ;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+}
+
+#accueil_banniere video
+{
+    margin:auto;
+}
+
+/* #accueil_actualites
+{
+
+}
+
+#accueil_top_recettes
+{
+
+} */

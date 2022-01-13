@@ -4,13 +4,14 @@
 <head>
     <?php include('includes/head.php'); ?>
     <title>Accueil</title>
+    <link rel="stylesheet" href="css/accueil.css" />
 </head>
 
 <body>
     <header><?php include('includes/header.php'); ?></header>
 
-    <div class="accueil_banniere">
-        <video src="img/Seoul.mp4" controls poster="img/seoul_img.jpg" width="500" id="video_banniere"></video>
+    <div id="accueil_banniere">
+        <video src="img/Seoul.mp4" controls poster="img/seoul_img.jpg" width="500"></video>
     </div>
     
     <body>

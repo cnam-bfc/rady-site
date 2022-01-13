@@ -1,14 +1,14 @@
 <?php
 if (
-    !isset($_POST['searchBar'])
-    || empty($_POST['searchBar'])
+    !isset($_POST['search'])
+    || empty($_POST['search'])
 ) {
     include('includes/error.php');
 
     return;
 }
 
-$search = htmlspecialchars($_POST['searchBar']);
+$search = htmlspecialchars($_POST['search']);
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ $search = htmlspecialchars($_POST['searchBar']);
     <header><?php include_once('includes/header.php'); ?></header>
 
     <div>
-        <h1>Résultats de la recherche de <strong><?php echo $search; ?></strong></h1>
+        <h1>Résultats de la recherche de "<?php echo $search; ?>":</h1>
     </div>
 
     <footer><?php include_once('includes/footer.php'); ?></footer>

@@ -1,13 +1,13 @@
-<div class="header_entier">
+<div id="header_main_div">
     <div id="header_logo">
-        <a href="accueil.php"><img src="img/logo - 64x64.png" alt="logo de rady" /></a />
-        <h1 id="h1header"><a href="accueil.php">Rady</a></h1>
+        <a href="accueil.php"><img src="img/logo - 64x64.png" alt="Logo de Rady" /></a />
+        <a href="accueil.php"><h1>RADY</h1></a>
     </div>
 
 
-    <div class="searchbar">
-        <form id="searchBar" method="POST" action="search.php">
-            <input type="search" name="searchBar" id="searchbar" placeholder="Rechercher une recette..." />
+    <div>
+        <form method="POST" action="search.php">
+            <input type="search" name="search" id="header_searchbar" placeholder="Rechercher une recette..." />
             <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
         </form>
     </div>
@@ -28,5 +28,4 @@
         </ul>
 
     </nav>
-
 </div>
