@@ -16,19 +16,19 @@
 
             <h1>Inscription</h1></br>
 
-            <label for="email">Email: </label>
+            <label for="email">Email</label>
             <input type="email" name="email" autofocus required placeholder="Email" />
 
-            <label for="pseudo">Pseudo: </label>
+            <label for="pseudo">Pseudo</label>
             <input type="text" name="pseudo" required placeholder="Pseudo" />
 
-            <label for="nom">Nom: </label>
+            <label for="nom">Nom</label>
             <input type="text" name="nom" required placeholder="Nom" />
 
-            <label for="prenom">Prénom: </label>
+            <label for="prenom">Prénom</label>
             <input type="text" name="prenom" required placeholder="Prénom" />
 
-            <label for="password">Mot de passe: </label>
+            <label for="password">Mot de passe</label>
             <input type="password" name="password" required placeholder="Mot de passe" />
 
             <div id="auth_button_div">
