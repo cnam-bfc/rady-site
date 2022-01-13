@@ -10,40 +10,35 @@
 <body>
     <header><?php include('includes/header.php'); ?></header>
 
-    <form method="post" action="submit_register.php">
+    <div id="auth_main_div">
 
-        <fieldset>
-            <legend>Inscription</legend>
+        <form action="submit_register.php" method="POST" id="auth_form">
 
-            <p>
-                <label for="email">Email: </label>
-                <input type="email" name="email" id="email" autofocus required placeholder="Email" />
-            </p>
+            <h1>Inscription</h1></br>
 
-            <p>
-                <label for="pseudo">Pseudo: </label>
-                <input type="text" name="pseudo" id="pseudo" required placeholder="Pseudo" />
-            </p>
+            <label for="email">Email: </label>
+            <input type="email" name="email" autofocus required placeholder="Email" />
 
-            <p>
-                <label for="nom">Nom: </label>
-                <input type="text" name="nom" id="nom" required placeholder="Nom" />
-            </p>
+            <label for="pseudo">Pseudo: </label>
+            <input type="text" name="pseudo" required placeholder="Pseudo" />
 
-            <p>
-                <label for="prenom">Prénom: </label>
-                <input type="text" name="prenom" id="prenom" required placeholder="Prénom" />
-            </p>
+            <label for="nom">Nom: </label>
+            <input type="text" name="nom" required placeholder="Nom" />
 
-            <p>
-                <label for="password">Mot de passe: </label>
-                <input type="password" name="password" id="password" required placeholder="Mot de passe" />
-            </p>
+            <label for="prenom">Prénom: </label>
+            <input type="text" name="prenom" required placeholder="Prénom" />
 
-            <input type="submit" value="S'inscrire" /></br>
-            <a href="login.php">Déjà inscrit?</a>
-        </fieldset>
-    </form>
+            <label for="password">Mot de passe: </label>
+            <input type="password" name="password" required placeholder="Mot de passe" />
+
+            <div id="auth_button_div">
+                <input type="submit" value="S'inscrire" id="auth_buttom" /></br>
+                <a href="login.php">Déjà inscrit?</a>
+            </div>
+
+        </form>
+
+    </div>
 
     <footer><?php include('includes/footer.php'); ?></footer>
 </body>

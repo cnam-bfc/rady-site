@@ -37,3 +37,9 @@ body
     height: 30px;
     width: 250px;
 }
+
+a:link, a:visited
+{
+    text-decoration: none;
+    color:black;
+}
