@@ -8,28 +8,30 @@
 </head>
 
 <body>
-    <header><?php include('includes/header.php'); ?></header>
+    <div class="main_div">
+        <header><?php include('includes/header.php'); ?></header>
 
-    <div id="auth_main_div">
+        <div id="auth_main_div">
 
-        <form action="submit_login.php" method="POST" id="auth_form">
+            <form action="submit_login.php" method="POST" id="auth_form">
 
-            <h1>Connexion</h1>
+                <h1>Connexion</h1>
 
-            <label for="email">Identifiant</label>
-            <input type="email" name="email" autofocus required placeholder="Email / Pseudo" />
+                <label for="email">Identifiant</label>
+                <input type="email" name="email" autofocus required placeholder="Email / Pseudo" />
 
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" required placeholder="Mot de passe" />
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" required placeholder="Mot de passe" />
 
-            <div id="auth_button_div">
-                <input type="submit" value="Se connecter" id="auth_buttom" /></br>
-                <a href="forgot_password.php">Mot de passe oublié?</a></br>
-                <a href="register.php">Pas encore inscrit?</a>
-            </div>
+                <div id="auth_button_div">
+                    <input type="submit" value="Se connecter" id="auth_buttom" /></br>
+                    <a href="forgot_password.php">Mot de passe oublié?</a></br>
+                    <a href="register.php">Pas encore inscrit?</a>
+                </div>
 
-        </form>
+            </form>
 
+        </div>
     </div>
 
     <footer><?php include('includes/footer.php'); ?></footer>

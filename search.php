@@ -20,10 +20,12 @@ $search = htmlspecialchars($_POST['search']);
 </head>
 
 <body>
-    <header><?php include_once('includes/header.php'); ?></header>
+    <div class="main_div">
+        <header><?php include_once('includes/header.php'); ?></header>
 
-    <div>
-        <h1>Résultats de la recherche de "<?php echo $search; ?>":</h1>
+        <div>
+            <h1>Résultats de la recherche de "<?php echo $search; ?>":</h1>
+        </div>
     </div>
 
     <footer><?php include_once('includes/footer.php'); ?></footer>

@@ -7,9 +7,11 @@
 </head>
 
 <body>
-    <header><?php include('includes/header.php'); ?></header>
+    <div class="main_div">
+        <header><?php include('includes/header.php'); ?></header>
 
-    <p>Déconnecté</p>
+        <p>Déconnecté</p>
+    </div>
 
     <footer><?php include('includes/footer.php'); ?></footer>
 </body>

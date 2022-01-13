@@ -20,13 +20,15 @@ $email = htmlspecialchars($_POST['email']);
 </head>
 
 <body>
-    <header><?php include_once('includes/header.php'); ?></header>
+    <div class="main_div">
+        <header><?php include_once('includes/header.php'); ?></header>
 
-    <div>
-        <h1>Un email de récupération vous a été envoyé</h1>
+        <div>
+            <h1>Un email de récupération vous a été envoyé</h1>
 
-        <h5>Rappel de vos informations:</h5>
-        <p><b>Email</b>: <?php echo $email; ?></p>
+            <h5>Rappel de vos informations:</h5>
+            <p><b>Email</b>: <?php echo $email; ?></p>
+        </div>
     </div>
 
     <footer><?php include_once('includes/footer.php'); ?></footer>

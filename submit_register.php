@@ -32,17 +32,19 @@ $password = htmlspecialchars($_POST['password']);
 </head>
 
 <body>
-    <header><?php include_once('includes/header.php'); ?></header>
+    <div class="main_div">
+        <header><?php include_once('includes/header.php'); ?></header>
 
-    <div>
-        <h1>Vous êtes inscrit !</h1>
+        <div>
+            <h1>Vous êtes inscrit !</h1>
 
-        <h5>Rappel de vos informations:</h5>
-        <p><b>Email</b>: <?php echo $email; ?></p>
-        <p><b>Pseudo</b>: <?php echo $pseudo; ?></p>
-        <p><b>Nom</b>: <?php echo $nom; ?></p>
-        <p><b>Prénom</b>: <?php echo $prenom; ?></p>
-        <p><b>Mot de passe</b>: <?php echo $password; ?></p>
+            <h5>Rappel de vos informations:</h5>
+            <p><b>Email</b>: <?php echo $email; ?></p>
+            <p><b>Pseudo</b>: <?php echo $pseudo; ?></p>
+            <p><b>Nom</b>: <?php echo $nom; ?></p>
+            <p><b>Prénom</b>: <?php echo $prenom; ?></p>
+            <p><b>Mot de passe</b>: <?php echo $password; ?></p>
+        </div>
     </div>
 
     <footer><?php include_once('includes/footer.php'); ?></footer>

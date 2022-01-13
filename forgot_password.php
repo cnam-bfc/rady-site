@@ -8,23 +8,25 @@
 </head>
 
 <body>
-    <header><?php include('includes/header.php'); ?></header>
+    <div class="main_div">
+        <header><?php include('includes/header.php'); ?></header>
 
-    <div id="auth_main_div">
+        <div id="auth_main_div">
 
-        <form action="submit_forgot_password.php" method="POST" id="auth_form">
+            <form action="submit_forgot_password.php" method="POST" id="auth_form">
 
-            <h1>Mot de passe oublié</h1>
+                <h1>Mot de passe oublié</h1>
 
-            <label for="email">Identifiant</label>
-            <input type="email" name="email" autofocus required placeholder="Email / Pseudo" />
+                <label for="email">Identifiant</label>
+                <input type="email" name="email" autofocus required placeholder="Email / Pseudo" />
 
-            <div id="auth_button_div">
-                <input type="submit" value="Valider" id="auth_buttom" /></br>
-            </div>
+                <div id="auth_button_div">
+                    <input type="submit" value="Valider" id="auth_buttom" /></br>
+                </div>
 
-        </form>
+            </form>
 
+        </div>
     </div>
 
     <footer><?php include('includes/footer.php'); ?></footer>
