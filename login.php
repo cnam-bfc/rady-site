@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="css/auth.css" />
 </head>
 
-
-<header><?php include('includes/header.php'); ?></header>
-
 <body>
+    <header><?php include('includes/header.php'); ?></header>
 
     <div id="auth_main_div">
 
@@ -25,7 +23,7 @@
             <input type="password" name="password" required placeholder="Mot de passe" />
 
             <div id="auth_button_div">
-                <input type="submit" value="Se connecter" id="auth_buttom"/></br>
+                <input type="submit" value="Se connecter" id="auth_buttom" /></br>
                 <a href="forgot_password.php">Mot de passe oublié?</a></br>
                 <a href="register.php">Pas encore inscrit?</a>
             </div>
