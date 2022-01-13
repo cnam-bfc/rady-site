@@ -14,7 +14,7 @@
 
         <form action="submit_register.php" method="POST" id="auth_form">
 
-            <h1>Inscription</h1></br>
+            <h1>Inscription</h1>
 
             <label for="email">Email</label>
             <input type="email" name="email" autofocus required placeholder="Email" />

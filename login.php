@@ -14,10 +14,10 @@
 
         <form action="submit_login.php" method="POST" id="auth_form">
 
-            <h1>Connexion</h1></br>
+            <h1>Connexion</h1>
 
             <label for="email">Identifiant</label>
-            <input type="email" name="email" autofocus required placeholder="Email / pseudo" /></br>
+            <input type="email" name="email" autofocus required placeholder="Email / pseudo" />
 
             <label for="password">Mot de passe</label>
             <input type="password" name="password" required placeholder="Mot de passe" />

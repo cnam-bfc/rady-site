@@ -8,7 +8,7 @@ body
     display: flex;
     flex-direction: column;
     margin: auto;
-    height: 700px;
+    height: 600px;
 }
 
 #auth_form
@@ -27,7 +27,7 @@ body
     display: flex;
     flex-direction: column;
     align-items: center ;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 #auth_buttom
@@ -35,10 +35,21 @@ body
     background-color: rgb(199, 178, 153);
     outline:none;
     height: 30px;
+    width: 260px;
+}
+
+#auth_main_div label
+{
+    padding-bottom: 2px;
+}
+
+#auth_main_div input
+{
+    margin-bottom: 10px;
     width: 250px;
 }
 
-a:link, a:visited
+#auth_main_div a:link, a:visited
 {
     text-decoration: none;
     color:black;
