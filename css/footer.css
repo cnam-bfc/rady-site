@@ -1,0 +1,13 @@
+#footer_main_div
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(229, 231, 229);
+    border-top: 2px outset grey ;
+}
+
+#footer_text
+{
+    margin-left: 10px;
+}
