@@ -17,7 +17,7 @@
             <h1>Connexion</h1>
 
             <label for="email">Identifiant</label>
-            <input type="email" name="email" autofocus required placeholder="Email / pseudo" />
+            <input type="email" name="email" autofocus required placeholder="Email / Pseudo" />
 
             <label for="password">Mot de passe</label>
             <input type="password" name="password" required placeholder="Mot de passe" />
