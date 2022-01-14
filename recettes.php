@@ -3,17 +3,34 @@
 
 <head>
     <?php include('includes/head.php'); ?>
-    <title>Recettes</title>
+   
+ <title>Recettes</title>
+    <link rel="stylesheet" href="css/recettes.css" />
 </head>
-
 <body>
     <div class="main_div">
         <header><?php include('includes/header.php'); ?></header>
 
-        <div>
-            <h1>Recettes</h1>
+        <div id="recettes_main">
 
-            <p>Aucune recette trouvé</p>
+            <h1>Liste des recettes</h1>
+
+            <div class="recettes_container">
+
+                <div id="recettes_nom">
+                    <p>NOM</p>
+                </div>
+
+                <div id="recettes_desc">
+                    <p>DESC</p>
+                </div>
+
+                <div id="recettes_note">
+                    <p>NOTE</p>
+                </div>
+
+            </div>
+
         </div>
     </div>
 

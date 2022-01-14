@@ -17,8 +17,8 @@
 
                 <h1>Mot de passe oublié</h1>
 
-                <label for="email">Identifiant</label>
-                <input type="email" name="email" autofocus required placeholder="Email / Pseudo" />
+                <label for="email">Email</label>
+                <input type="email" name="email" autofocus required placeholder="Email" />
 
                 <div id="auth_button_div">
                     <input type="submit" value="Valider" id="auth_buttom" /></br>
