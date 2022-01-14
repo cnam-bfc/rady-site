@@ -14,14 +14,22 @@
             <video src="img/Seoul.mp4" controls poster="img/seoul_img.jpg" width="500"></video>
         </div>
 
-        <!-- l'actualité du site -->
-        <div id="accueil_actualites">
+        <div id="accueil_content_div">
+            <!-- l'actualite du site -->
+            <div id="accueil_actualites">
 
-        </div>
+                <!-- ici il faudrait mettre une actualite (code en brut pour le moment) avec une petite image pour illustre
+            et que la boite fasse la meme taille que celle de accueil top recette  -->
 
-        <!-- les top recettes de la semaine -->
-        <div id="accueil_top_recettes">
+            </div>
 
+            <!-- les top recettes de la semaine -->
+            <div id="accueil_top_recettes">
+
+                <!-- ici il faudrait mettre un titre du genre " les 3 recettes de la semaine et en dessous
+            3 blocs contenant chacun 1- le nom de la recette / 2- sa description / 3- sa note -->
+
+            </div>
         </div>
     </div>
 
