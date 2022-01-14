@@ -1,3 +1,10 @@
+<?php include_once('includes/init.php'); ?>
+
+<?php
+if (isset($_SESSION['USER_LOGGED'])) {
+    include_once('includes/redirect_backward.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -9,32 +16,27 @@
 
 <body>
     <div class="main_div">
-        <header><?php include('includes/header.php'); ?></header>
+        <header><?php include_once('includes/header.php'); ?></header>
 
         <div id="auth_main_div">
-
             <form action="submit_login.php" method="POST" id="auth_form">
-
                 <h1>Connexion</h1>
 
-                <label for="email">Identifiant</label>
-                <input type="email" name="email" autofocus required placeholder="Email / Pseudo" />
+                <label for="identifiant">Identifiant</label>
+                <input type="text" name="identifiant" autofocus required placeholder="Email / Pseudo" />
 
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" required placeholder="Mot de passe" />
 
                 <div id="auth_button_div">
                     <input type="submit" value="Se connecter" id="auth_buttom" /></br>
-                    <a href="forgot_password.php">Mot de passe oublié?</a></br>
                     <a href="register.php">Pas encore inscrit?</a>
                 </div>
-
             </form>
-
         </div>
     </div>
 
-    <footer><?php include('includes/footer.php'); ?></footer>
+    <footer><?php include_once('includes/footer.php'); ?></footer>
 </body>
 
 </html>

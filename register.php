@@ -1,3 +1,10 @@
+<?php include_once('includes/init.php'); ?>
+
+<?php
+if (isset($_SESSION['USER_LOGGED'])) {
+    include_once('includes/redirect_backward.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +16,7 @@
 
 <body>
     <div class="main_div">
-        <header><?php include('includes/header.php'); ?></header>
+        <header><?php include_once('includes/header.php'); ?></header>
 
         <div id="auth_main_div">
 
@@ -42,7 +49,7 @@
         </div>
     </div>
 
-    <footer><?php include('includes/footer.php'); ?></footer>
+    <footer><?php include_once('includes/footer.php'); ?></footer>
 </body>
 
 </html>

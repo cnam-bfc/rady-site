@@ -1,3 +1,5 @@
+<?php include_once('includes/init.php'); ?>
+
 <?php
 if (
     !isset($_POST['email'])
@@ -5,14 +7,12 @@ if (
     || !isset($_POST['message'])
     || empty($_POST['message'])
 ) {
-    include('includes/error.php');
-
-    return;
+    $_SESSION['ERROR_MSG'] = 'Données transmises incorectes !';
+    include_once('includes/error.php');
 }
 
 $email = htmlspecialchars($_POST['email']);
 $message = htmlspecialchars($_POST['message']);
-
 ?>
 <!DOCTYPE html>
 <html>

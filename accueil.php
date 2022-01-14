@@ -1,3 +1,4 @@
+<?php include_once('includes/init.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +10,8 @@
 
 <body>
     <div class="main_div">
-        <header id="accueil_header"><?php include('includes/header.php'); ?></header>
+        <header><?php include_once('includes/header.php'); ?></header>
+
         <div id="accueil_banniere">
             <video src="img/Seoul.mp4" controls poster="img/seoul_img.jpg" width="500"></video>
         </div>
@@ -22,29 +24,29 @@
             et que la boite fasse la meme taille que celle de accueil top recette  -->
 
                 <h1>Titre du texte</h1>
-           
-                <p id="accueil_actu_img"><img src="img/radis.png" alt="image de radis"/> </p>
-            
-                <h2>Sous-titre</h2>
-                <p>Harum trium sententiarum nulli prorsus assentior. Nec enim illa prima vera est, ut, quem ad modum in se quisque sit, 
-                sic in amicum sit animatus. Quam multa enim, quae nostra causa numquam faceremus, facimus causa amicorum! precari ab 
-                indigno, supplicare, tum acerbius in aliquem invehi insectarique vehementius, quae in nostris rebus non satis honeste, 
-                in amicorum fiunt honestissime; multaeque res sunt in quibus de suis commodis viri boni multa detrahunt detrahique patiuntur, 
-                ut iis amici potius quam ipsi fruantur. </p>
+
+                <p id="accueil_actu_img"><img src="img/radis.png" alt="image de radis" /> </p>
 
                 <h2>Sous-titre</h2>
-                <p>Harum trium sententiarum nulli prorsus assentior. Nec enim illa prima vera est, ut, quem ad modum in se quisque sit, 
-                sic in amicum sit animatus. Quam multa enim, quae nostra causa numquam faceremus, facimus causa amicorum! precari ab 
-                indigno, supplicare, tum acerbius in aliquem invehi insectarique vehementius, quae in nostris rebus non satis honeste, 
-                in amicorum fiunt honestissime; multaeque res sunt in quibus de suis commodis viri boni multa detrahunt detrahique patiuntur, 
-                ut iis amici potius quam ipsi fruantur. </p>
+                <p>Harum trium sententiarum nulli prorsus assentior. Nec enim illa prima vera est, ut, quem ad modum in se quisque sit,
+                    sic in amicum sit animatus. Quam multa enim, quae nostra causa numquam faceremus, facimus causa amicorum! precari ab
+                    indigno, supplicare, tum acerbius in aliquem invehi insectarique vehementius, quae in nostris rebus non satis honeste,
+                    in amicorum fiunt honestissime; multaeque res sunt in quibus de suis commodis viri boni multa detrahunt detrahique patiuntur,
+                    ut iis amici potius quam ipsi fruantur. </p>
 
                 <h2>Sous-titre</h2>
-                <p>Harum trium sententiarum nulli prorsus assentior. Nec enim illa prima vera est, ut, quem ad modum in se quisque sit, 
-                sic in amicum sit animatus. Quam multa enim, quae nostra causa numquam faceremus, facimus causa amicorum! precari ab 
-                indigno, supplicare, tum acerbius in aliquem invehi insectarique vehementius, quae in nostris rebus non satis honeste, 
-                in amicorum fiunt honestissime; multaeque res sunt in quibus de suis commodis viri boni multa detrahunt detrahique patiuntur, 
-                ut iis amici potius quam ipsi fruantur. </p>
+                <p>Harum trium sententiarum nulli prorsus assentior. Nec enim illa prima vera est, ut, quem ad modum in se quisque sit,
+                    sic in amicum sit animatus. Quam multa enim, quae nostra causa numquam faceremus, facimus causa amicorum! precari ab
+                    indigno, supplicare, tum acerbius in aliquem invehi insectarique vehementius, quae in nostris rebus non satis honeste,
+                    in amicorum fiunt honestissime; multaeque res sunt in quibus de suis commodis viri boni multa detrahunt detrahique patiuntur,
+                    ut iis amici potius quam ipsi fruantur. </p>
+
+                <h2>Sous-titre</h2>
+                <p>Harum trium sententiarum nulli prorsus assentior. Nec enim illa prima vera est, ut, quem ad modum in se quisque sit,
+                    sic in amicum sit animatus. Quam multa enim, quae nostra causa numquam faceremus, facimus causa amicorum! precari ab
+                    indigno, supplicare, tum acerbius in aliquem invehi insectarique vehementius, quae in nostris rebus non satis honeste,
+                    in amicorum fiunt honestissime; multaeque res sunt in quibus de suis commodis viri boni multa detrahunt detrahique patiuntur,
+                    ut iis amici potius quam ipsi fruantur. </p>
 
             </div>
 
@@ -94,7 +96,7 @@
         </div>
     </div>
 
-    <footer id="accueil_footer"><?php include('includes/footer.php'); ?></footer>
+    <footer><?php include_once('includes/footer.php'); ?></footer>
 </body>
 
 </html>

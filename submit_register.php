@@ -1,9 +1,18 @@
+<?php include_once('includes/init.php'); ?>
+
+<?php
+if (isset($_SESSION['USER_LOGGED'])) {
+    include_once('includes/redirect_backward.php');
+}
+?>
+
 <?php
 if (
     !isset($_POST['email'])
     || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
     || !isset($_POST['pseudo'])
     || empty($_POST['pseudo'])
+    || str_contains($_POST['pseudo'], '@')
     || !isset($_POST['nom'])
     || empty($_POST['nom'])
     || !isset($_POST['prenom'])
@@ -11,9 +20,8 @@ if (
     || !isset($_POST['password'])
     || empty($_POST['password'])
 ) {
-    include('includes/error.php');
-
-    return;
+    $_SESSION['ERROR_MSG'] = 'Informations fournies non valides !';
+    include_once('includes/error.php');
 }
 
 $email = htmlspecialchars($_POST['email']);
@@ -22,32 +30,64 @@ $nom = htmlspecialchars($_POST['nom']);
 $prenom = htmlspecialchars($_POST['prenom']);
 $password = htmlspecialchars($_POST['password']);
 
+// On vérifie si il existe déjà un utilisateur avec ce pseudo
+try {
+    $sqlQuery = 'SELECT pseudo FROM Utilisateurs WHERE pseudo = :pseudo';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'pseudo' => $pseudo
+    ]);
+    $pseudos = $sqlStatement->fetchAll();
+    if (count($pseudos) > 0) {
+        $_SESSION['ERROR_MSG'] = "Le pseudo \"" . $pseudo . "\" existe déjà";
+        include('includes/error.php');
+    }
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include('includes/error.php');
+}
+
+// On vérifie si il existe déjà un utilisateur avec cet email
+try {
+    $sqlQuery = 'SELECT email FROM Utilisateurs WHERE email = :email';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'email' => $email
+    ]);
+    $emails = $sqlStatement->fetchAll();
+    if (count($emails) > 0) {
+        $_SESSION['ERROR_MSG'] = "L'email \"" . $email . "\" existe déjà";
+        include('includes/error.php');
+    }
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include('includes/error.php');
+}
+
+// Tout est OK on ajoute l'utilisateur
+try {
+    $sqlQuery = 'INSERT INTO Utilisateurs (pseudo, email, hashPassword, prenom, nom) VALUES (:pseudo, :email, :hashPassword, :prenom, :nom)';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'pseudo' => $pseudo,
+        'email' => $email,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'hashPassword' => password_hash($password, PASSWORD_BCRYPT)
+    ]);
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include('includes/error.php');
+}
+
+// On sauvegarde les informations de l'utilisateur dans la session
+// TODO Renvoyer sur la page submit_login.php pour enregistrer ces infos à un seul endroit et pas avoir 2 versions du code
+$_SESSION['USER_LOGGED'] = true;
+$_SESSION['USER_PSEUDO'] = $pseudo;
+$_SESSION['USER_EMAIL'] = $email;
+$_SESSION['USER_NOM'] = $nom;
+$_SESSION['USER_PRENOM'] = $prenom;
+
+// Retour en arrière
+include_once('includes/redirect_backward.php');
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <?php include('includes/head.php'); ?>
-    <title>Inscription</title>
-</head>
-
-<body>
-    <div class="main_div">
-        <header><?php include_once('includes/header.php'); ?></header>
-
-        <div>
-            <h1>Vous êtes inscrit !</h1>
-
-            <h5>Rappel de vos informations:</h5>
-            <p><b>Email</b>: <?php echo $email; ?></p>
-            <p><b>Pseudo</b>: <?php echo $pseudo; ?></p>
-            <p><b>Nom</b>: <?php echo $nom; ?></p>
-            <p><b>Prénom</b>: <?php echo $prenom; ?></p>
-            <p><b>Mot de passe</b>: <?php echo $password; ?></p>
-        </div>
-    </div>
-
-    <footer><?php include_once('includes/footer.php'); ?></footer>
-</body>
-
-</html>

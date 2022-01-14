@@ -1,4 +1,4 @@
-<!-- index.php -->
+<?php include_once('includes/init.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,9 +7,8 @@
     <title>Site de recettes - Page d'accueil</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-    <div class="container">
-
+<body>
+    <div>
         <?php include_once('includes/header.php'); ?>
         <h1>Site de recettes</h1>
 

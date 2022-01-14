@@ -1,41 +1,58 @@
+<?php include_once('includes/init.php'); ?>
+
 <?php
+if (isset($_SESSION['USER_LOGGED'])) {
+    include_once('includes/redirect_backward.php');
+}
+
 if (
-    !isset($_POST['email'])
-    || empty($_POST['email'])
+    !isset($_POST['identifiant'])
+    || empty($_POST['identifiant'])
+    || (strpos($_POST['identifiant'], '@') && !filter_var($_POST['identifiant'], FILTER_VALIDATE_EMAIL))
     || !isset($_POST['password'])
     || empty($_POST['password'])
 ) {
-    include('includes/error.php');
-
-    return;
+    $_SESSION['ERROR_MSG'] = 'Informations fournies non valides !';
+    include_once('includes/error.php');
 }
 
-$email = htmlspecialchars($_POST['email']);
+$identifiant = htmlspecialchars($_POST['identifiant']);
 $password = htmlspecialchars($_POST['password']);
 
+// On récupère l'utilisateur dans la base de données
+try {
+    $sqlQuery = 'SELECT * FROM Utilisateurs WHERE pseudo = :identifiant OR email = :identifiant';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'identifiant' => $identifiant
+    ]);
+    $utilisateurs = $sqlStatement->fetchAll();
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include('includes/error.php');
+}
+
+foreach ($utilisateurs as $utilisateur) {
+    if (!password_verify($password, $utilisateur['hashPassword'])) {
+        continue;
+    }
+    $pseudo = htmlspecialchars($utilisateur['pseudo']);
+    $email = htmlspecialchars($utilisateur['email']);
+    $nom = htmlspecialchars($utilisateur['nom']);
+    $prenom = htmlspecialchars($utilisateur['prenom']);
+}
+
+if (!isset($pseudo)) {
+    $_SESSION['ERROR_MSG'] = 'Identifiant ou mot de passe incorrect';
+    include('includes/error.php');
+}
+
+// On sauvegarde les informations de l'utilisateur dans la session
+$_SESSION['USER_LOGGED'] = true;
+$_SESSION['USER_PSEUDO'] = $pseudo;
+$_SESSION['USER_EMAIL'] = $email;
+$_SESSION['USER_NOM'] = $nom;
+$_SESSION['USER_PRENOM'] = $prenom;
+
+include_once('includes/redirect_backward.php');
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <?php include('includes/head.php'); ?>
-    <title>Connexion</title>
-</head>
-
-<body>
-    <div class="main_div">
-        <header><?php include_once('includes/header.php'); ?></header>
-
-        <div>
-            <h1>Vous êtes connecté !</h1>
-
-            <h5>Rappel de vos informations:</h5>
-            <p><b>Email</b>: <?php echo $email; ?></p>
-            <p><b>Mot de passe</b>: <?php echo $password; ?></p>
-        </div>
-    </div>
-
-    <footer><?php include_once('includes/footer.php'); ?></footer>
-</body>
-
-</html>

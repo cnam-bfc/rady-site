@@ -1,3 +1,4 @@
+<?php include_once('includes/init.php'); ?>
 <!DOCTYPE html>
 <html>
 
@@ -9,13 +10,9 @@
 
 <body>
     <div class="main_div">
-        <header><?php include('includes/header.php'); ?></header>
-
-
+        <header><?php include_once('includes/header.php'); ?></header>
 
         <div id="recette_main">
-
-
             <div id="recette_title">
                 <p>NOM</p>
             </div>
@@ -24,27 +21,19 @@
                 <p>fefzsefzes zefezfzef zfzefzfze</p>
             </div>
 
-
             <div id="recette_note_like">
-
-
                 <div id="recette_note">
                     <p> 10 </p>
                 </div>
 
-
                 <div id="recette_like">
                     <p> 26</p>
                 </div>
-
-
             </div>
-
 
             <div id="recette_img">
-                <p><img src="img/seoul_img.jpg" alt="image de la recette"/></p>
+                <p><img src="img/seoul_img.jpg" alt="image de la recette" /></p>
             </div>
-
 
             <div id="recette_ingrediants">
                 <ul>
@@ -55,30 +44,22 @@
                 </ul>
             </div>
 
-
             <div id="recette_etapes">
-
                 <ol>
                     <li>zefzef</li>
                     <li>deze aee </li>
                     <li>zefzef</li>
                     <li>deze aee </li>
                 </ol>
-
             </div>
-
 
             <div id="recette_comment">
 
             </div>
-
-
         </div>
-
-
     </div>
 
-    <footer><?php include('includes/footer.php'); ?></footer>
+    <footer><?php include_once('includes/footer.php'); ?></footer>
 </body>
 
 </html>

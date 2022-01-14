@@ -1,6 +1,4 @@
 <?php
-// variables.php
-
 $users = [
     [
         'full_name' => 'Mickaël Andrieu',

@@ -8,16 +8,21 @@
 
 <body>
     <div class="main_div">
-        <header><?php include('includes/header.php'); ?></header>
+        <header><?php include_once('includes/header.php'); ?></header>
 
-        <body>
-            <div>
-                <p><strong>Une erreur est survenue</strong></p>
-                <a href="accueil.php">Retour à l'accueil</a>
-            </div>
-        </body>
+        <div>
+            <h1>Une erreur est survenue</h1>
+
+            <?php if (isset($_SESSION['ERROR_MSG']) && !empty($_SESSION['ERROR_MSG'])) : ?>
+                <strong><?php echo $_SESSION['ERROR_MSG']; ?></strong></br>
+            <?php endif; ?>
+
+            <a href="./">Retour à l'accueil</a>
+        </div>
     </div>
 
-    <footer><?php include('includes/footer.php'); ?></footer>
+    <footer><?php include_once('includes/footer.php'); ?></footer>
+</body>
 
 </html>
+<?php die(); ?>
