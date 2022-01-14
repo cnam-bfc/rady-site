@@ -20,8 +20,12 @@
                 <p>NOM</p>
             </div>
 
+            <div id="recette_desc">
+                <p>fefzsefzes zefezfzef zfzefzfze</p>
+            </div>
 
-            <div id="recette_note_desc">
+
+            <div id="recette_note_like">
 
 
                 <div id="recette_note">
@@ -29,8 +33,8 @@
                 </div>
 
 
-                <div id="recette_desc">
-                    <p> qefe se sezef fe zefzef zefz zzzzaa</p>
+                <div id="recette_like">
+                    <p> 26</p>
                 </div>
 
 
@@ -38,7 +42,7 @@
 
 
             <div id="recette_img">
-                <p><img src="img/seoul_img.png" alt="image de la recette"/></p>
+                <p><img src="img/seoul_img.jpg" alt="image de la recette"/></p>
             </div>
 
 

@@ -6,7 +6,7 @@
 
 
     <div>
-        <form method="POST" action="search.php">
+        <form method="GET" action="search.php">
             <input type="search" name="search" id="header_searchbar" placeholder="Rechercher une recette..." />
             <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
         </form>

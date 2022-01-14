@@ -5,7 +5,56 @@
     display:flex;
     flex-direction:column;
     margin: 0 150px 0 150px;
-    align-content: center;
-    align-items: center
 }
 
+/* allignement de tout sauf note et like*/
+
+#recette_title, #recette_desc,#recette_img, #recette_ingrediants, #recette_etapes {
+    margin: auto;
+}
+
+
+/* Partie titre et description */
+
+#recette_title{
+
+}
+
+#recette-desc{
+
+}
+
+/*Partie note et like */
+#recette_note_like
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 3px solid black;
+}
+
+#recette_note
+{
+    color: red;
+}
+
+#recette_like 
+{
+    color: blue;
+}
+
+/*Partie image */
+
+#recette_img{
+
+}
+
+#recette_img img{
+
+
+}
+
+
+/*Partie ingrédiants et étapes */

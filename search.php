@@ -1,14 +1,14 @@
 <?php
 if (
-    !isset($_POST['search'])
-    || empty($_POST['search'])
+    !isset($_GET['search'])
+    || empty($_GET['search'])
 ) {
     include('includes/error.php');
 
     return;
 }
 
-$search = htmlspecialchars($_POST['search']);
+$search = htmlspecialchars($_GET['search']);
 
 ?>
 <!DOCTYPE html>
