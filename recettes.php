@@ -42,27 +42,31 @@ try {
 
         <div id="recettes_main">
 
-            <?php if (!isset($search)) : ?>
-                <h1>Liste des recettes</h1>
+            <?php if (count($recettes) == 0) : ?>
+                <h1>Aucun résultat pour "<?php echo $search; ?>"</h1>
             <?php else : ?>
-                <h1>Résultats de la recherche "<?php echo $search; ?>"</h1>
+                <?php if (!isset($search)) : ?>
+                    <h1>Liste des recettes</h1>
+                <?php else : ?>
+                    <h1>Résultats de la recherche "<?php echo $search; ?>"</h1>
+                <?php endif; ?>
+
+                <?php foreach ($recettes as $recette) : ?>
+                    <div class="recettes_container">
+                        <div id="recettes_nom">
+                            <p><?php echo htmlspecialchars($recette['nom']); ?></p>
+                        </div>
+
+                        <div id="recettes_desc">
+                            <p><?php echo htmlspecialchars($recette['description']); ?></p>
+                        </div>
+
+                        <div id="recettes_note">
+                            <p>NOTE</p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             <?php endif; ?>
-
-            <?php foreach ($recettes as $recette) : ?>
-                <div class="recettes_container">
-                    <div id="recettes_nom">
-                        <p><?php echo htmlspecialchars($recette['nom']); ?></p>
-                    </div>
-
-                    <div id="recettes_desc">
-                        <p><?php echo htmlspecialchars($recette['description']); ?></p>
-                    </div>
-
-                    <div id="recettes_note">
-                        <p>NOTE</p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
         </div>
     </div>
 
