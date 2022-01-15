@@ -45,17 +45,17 @@ try {
             <?php if (!isset($search)) : ?>
                 <h1>Liste des recettes</h1>
             <?php else : ?>
-                <h1>Résultats de la recherche de "<?php echo $search; ?>"</h1>
+                <h1>Résultats de la recherche "<?php echo $search; ?>"</h1>
             <?php endif; ?>
 
             <?php foreach ($recettes as $recette) : ?>
                 <div class="recettes_container">
                     <div id="recettes_nom">
-                        <p><?php echo $recette['nom']; ?></p>
+                        <p><?php echo htmlspecialchars($recette['nom']); ?></p>
                     </div>
 
                     <div id="recettes_desc">
-                        <p><?php echo $recette['description']; ?></p>
+                        <p><?php echo htmlspecialchars($recette['description']); ?></p>
                     </div>
 
                     <div id="recettes_note">

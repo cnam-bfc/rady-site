@@ -23,7 +23,7 @@
                 <li><a href="login.php">Connexion</a></li>
                 <li><a href="register.php">Inscription</a></li>
             <?php else : ?>
-                <li><?php echo $_SESSION['USER_PSEUDO']; ?></li>
+                <li><?php echo htmlspecialchars($_SESSION['USER_PSEUDO']); ?></li>
                 <li><a href="submit_logout.php">Déconnexion</a></li>
             <?php endif; ?>
         </ul>
