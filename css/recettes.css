@@ -3,12 +3,26 @@
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    background-image: url("img/fond.png");
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 #recettes_main h1
 {
     text-shadow: 1px 1px 1px black;
     text-align: center;
+    margin-bottom: 30px;
+}
+
+.recettes_separator
+{
+    height: 40px;
+}
+
+#recettes_main a
+{
+    text-decoration: none;
 }
 
 .recettes_container
@@ -16,35 +30,35 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    margin: 10px;
     border: 3px solid rgb(63, 62, 62);
     border-radius: 7px;
     box-shadow: 1px 1px 1px grey;
+    background-color: white;
+    color: #181818;
 }
 
-#recettes_nom
+.recettes_nom
 {
     border-right: 3px solid rgb(63, 62, 62);
     box-shadow: 1px 1px 1px grey;
-    height: 70px;
+    height: 100px;
     width: 300px;
     text-align: center;
     padding: 5px;
-    display:flex;
+    display: flex;
 }
 
-#recettes_note
+.recettes_note
 {
     border-left: 3px solid rgb(63, 62, 62);
     box-shadow: 1px 1px 1px grey;
-    height: 70px;
     width: 150px;
     text-align: center;
     padding: 5px;
     display: flex;
 }
 
-#recettes_desc
+.recettes_desc
 {
     box-shadow: 1px 1px 1px grey;
     flex: 1;
@@ -52,7 +66,7 @@
     padding: 5px;
 }
 
-#recettes_nom p, #recettes_note p 
+.recettes_nom p, .recettes_note p 
 {
    margin: auto;
 }

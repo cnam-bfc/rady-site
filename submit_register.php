@@ -80,14 +80,8 @@ try {
     include('includes/error.php');
 }
 
-// On sauvegarde les informations de l'utilisateur dans la session
-// TODO Renvoyer sur la page submit_login.php pour enregistrer ces infos à un seul endroit et pas avoir 2 versions du code
-$_SESSION['USER_LOGGED'] = true;
-$_SESSION['USER_PSEUDO'] = $pseudo;
-$_SESSION['USER_EMAIL'] = $email;
-$_SESSION['USER_NOM'] = $nom;
-$_SESSION['USER_PRENOM'] = $prenom;
-
-// Retour en arrière
-include_once('includes/redirect_backward.php');
+// On login l'utilisateur
+$_POST['identifiant'] = $email;
+$_POST['password'] = $password;
+include_once('submit_login.php');
 ?>

@@ -36,6 +36,7 @@ foreach ($utilisateurs as $utilisateur) {
     if (!password_verify($password, $utilisateur['hashPassword'])) {
         continue;
     }
+    $id = htmlspecialchars($utilisateur['id']);
     $pseudo = htmlspecialchars($utilisateur['pseudo']);
     $email = htmlspecialchars($utilisateur['email']);
     $nom = htmlspecialchars($utilisateur['nom']);
@@ -49,6 +50,7 @@ if (!isset($pseudo)) {
 
 // On sauvegarde les informations de l'utilisateur dans la session
 $_SESSION['USER_LOGGED'] = true;
+$_SESSION['USER_ID'] = $id;
 $_SESSION['USER_PSEUDO'] = $pseudo;
 $_SESSION['USER_EMAIL'] = $email;
 $_SESSION['USER_NOM'] = $nom;

@@ -9,9 +9,11 @@
 
 #accueil_banniere
 {
-    background-image : url("../img/fond.png") ;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    background-image : url("../img/accueil_flou.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+        padding-top: 30px;
+        padding-bottom: 30px;
     display: flex;
 }
 
@@ -26,19 +28,32 @@
 #accueil_actualites
 {
     background-color: white;
+    border-radius: 50px;
     margin: 20px 150px 50px 150px;
     padding: 30px 50px 30px 50px;
     /*border: 3px solid black;*/
+    display: flex;
+    flex-direction: column;
 }
 
 #accueil_actualites h1 
 {
     text-align: center;
+    border-bottom: 3px solid rgba(0,0,0,0.1);
+    margin: auto;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin-bottom: 30px;
 }
 
-#accueil_actualites h2 
+#accueil_border_actu
 {
-    text-indent: 30px;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    padding-left: 20px;
+}
+
+.accueil_title_h2
+{
     margin-top: 30px;
 }
 
@@ -48,28 +63,9 @@
     text-indent: 15px;
 }
 
-#accueil_actu_img
-{
-    margin: 40px 0 50px 0;
-    display: flex;
-
-}
-
-#accueil_actualites img
-{
-    margin:auto;
-    height: 50%;
-    width: 50%;
-}
-
 
 /*La partie des top recettes 
 En responsive format petit/mobile ou alors utiliser wrap il faudra mettre les recettes en colonnes */
-
-#accueil_top_recettes
-{
-    /*border: 3px solid red;*/
-}
 
 #top_recettes_title
 {
@@ -97,6 +93,7 @@ En responsive format petit/mobile ou alors utiliser wrap il faudra mettre les re
     height: 300px;
     width: 400px;
     background: white;
+    border-radius: 10px;
 }
 
 .top_recettes_border h1
@@ -115,16 +112,6 @@ En responsive format petit/mobile ou alors utiliser wrap il faudra mettre les re
     text-align: right;
     text-indent: 10px;
 }
-
-/*@media all and(max-width: 1000px)
-{
-    .top_recettes_border
-    {
-        height:50%;
-        width:50%;
-    }
-}
-*/
 
 @media all and (max-width: 1300px)
 {

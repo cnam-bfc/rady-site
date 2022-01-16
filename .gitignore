@@ -21,6 +21,3 @@ composer.phar
 
 # Ignore DevSpace cache and log folder
 .devspace/
-
-# Ignore otago
-/otago/

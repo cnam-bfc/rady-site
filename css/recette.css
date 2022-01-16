@@ -1,10 +1,18 @@
-/*Mettre la page en colonne*/
+/*Mettre la page en colonne + couleur de fond*/
+
+.main_div
+{
+    background-color: rgb(207, 207, 205) ;
+}
 
 #recette_main
 {
     display:flex;
     flex-direction:column;
-    margin: 0 150px 0 150px;
+    margin: 30px 170px 30px 170px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 30px 60px 30px 60px;
 }
 
 /* allignement de tout sauf note et like*/
@@ -17,11 +25,15 @@
 /* Partie titre et description */
 
 #recette_title{
-
+    text-shadow: 1px 1px 1px black;
+    margin: auto;
+    border-bottom: 2px solid grey;
+    padding-left: 10px;
+    padding-right:10px;
 }
 
 #recette-desc{
-
+    font-weight: bold;
 }
 
 /*Partie note et like */
@@ -30,31 +42,190 @@
     display:flex;
     flex-direction: row;
     justify-content: space-around;
-    padding-left: 30px;
-    padding-right: 30px;
-    border: 3px solid black;
+    margin: auto;
+    /*width: 100%;*/
+    border: 1px solid rgb(221, 167, 19);
+    border-radius: 10px;
+    margin-top: 30px;
 }
 
-#recette_note
+#recette_note_avg
 {
-    color: red;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    flex: 1;
 }
 
-#recette_like 
+#recette_like_dislike
 {
-    color: blue;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
+#recette_note, #recette_avg, #recette_like, #recette_dislike {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#like_buttom
+{
+    width: 40px;
+    height: auto;
+}
+
+#dislike_buttom
+{
+    width: 24px;
+    height: auto;
+}
+
+.recette_like_selected
+{
+    background: green;
+}
+
+.recette_dislike_selected
+{
+    background: red;
+}
 /*Partie image */
 
-#recette_img{
-
-}
 
 #recette_img img{
-
-
+    width: 300px;
+    height: auto;
 }
 
 
-/*Partie ingrédiants et étapes */
+/*Partie ingrédiants et étapes trouver une autre solution que les listes à puce pour rangement 
+car c'est de la merde, éventuellement refaire un systeme de boite CQFD. Ok j'ai trouvé WOULA mais en faite c'est mieux
+sans centrer donc j'ai cherché pour rien*/
+
+/*#recette_ingrediants ul, #recette_etapes ol
+{
+    display: inline-block;
+    text-align: center;
+}*/
+
+#recette_ingrediants, #recette_etapes
+{
+    border: 2px solid black;
+    width: 600px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#recette_ingrediants
+{
+    width: 400px !important;
+}
+
+#recette_ingrediants h2, #recette_etapes h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/*Espace commentaire, Bon pour le moment je l'intègre à la page mais il est
+fort probable que ça ne soit plus le cas à l'avenir */
+
+#recette_comment_title
+{
+    text-align: center;
+}
+
+#recette_container_comment_main
+{
+    max-height: 800px;
+    overflow-y: scroll;
+}
+
+#recette_container_comment
+{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#recette_container_name_like
+{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 3px solid black;
+    align-items: center;
+}
+
+#recette_container_name_like em
+{
+    flex:1;
+    text-indent: 10px;
+}
+
+#recette_container_name_like p
+{
+    width: 100px;
+}
+
+#recette_container_name_like form
+{
+    width: 50px;
+}
+
+#recette_del_comment input
+{
+    height: 50px;
+    width: auto;
+}
+
+#recette_comment
+{
+    text-indent: 50px;
+    white-space: normal;
+    word-wrap: break-word;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/*Espace création de commentaire*/
+
+#recette_form_comment
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;;
+}
+
+#recette_create_comment
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#recette_create_comment label
+{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#recette_create_comment_text
+{
+    margin-top: 3px;
+    padding: 10px;
+    white-space: normal;
+    word-wrap: break-word;
+    text-indent: 10px;
+}
+
+#recette_comment_buttom_div input
+{
+    margin-top: 5px;
+    height: 25px;
+    border-radius: 3px;
+}

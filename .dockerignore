@@ -1,4 +1,12 @@
 Dockerfile
+Dockerfile.dev
+.dockerignore
 
 # Ignore .git folder
 .git
+.gitattributes
+.gitignore
+
+# Ignore devspace files
+devspace_start.sh
+devspace.yaml

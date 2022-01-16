@@ -31,13 +31,13 @@ try {
 
 <head>
     <?php include('includes/head.php'); ?>
-
     <title>Recettes</title>
     <link rel="stylesheet" href="css/recettes.css" />
 </head>
 
 <body>
     <div class="main_div">
+        <?php $header_searchbar_focus = true; ?>
         <header><?php include_once('includes/header.php'); ?></header>
 
         <div id="recettes_main">
@@ -52,18 +52,22 @@ try {
                 <?php endif; ?>
 
                 <?php foreach ($recettes as $recette) : ?>
-                    <div class="recettes_container">
-                        <div id="recettes_nom">
-                            <p><?php echo htmlspecialchars($recette['nom']); ?></p>
-                        </div>
+                    <a href=<?php echo ('recette.php?id=' . htmlspecialchars($recette['id'])); ?>>
+                        <div class="recettes_container">
+                            <div class="recettes_nom">
+                                <p><?php echo htmlspecialchars($recette['nom']); ?></p>
+                            </div>
 
-                        <div id="recettes_desc">
-                            <p><?php echo htmlspecialchars($recette['description']); ?></p>
-                        </div>
+                            <div class="recettes_desc">
+                                <p><?php echo htmlspecialchars($recette['description']); ?></p>
+                            </div>
 
-                        <div id="recettes_note">
-                            <p>NOTE</p>
+                            <div class="recettes_note">
+                                <p>NOTE</p>
+                            </div>
                         </div>
+                    </a>
+                    <div class="recettes_separator">
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>

@@ -5,12 +5,12 @@
     <?php include('includes/head.php'); ?>
     <title>Redirection...</title>
     <script language="JavaScript" type="text/javascript">
-        window.history.back();
+        setTimeout("window.history.back();", 100);
     </script>
 </head>
 
 <body>
-    <p>Retour en arrière...</br><a href="./">Cliquez ici pour revenir à l'accueil</a></p>
+    <p>Retour...</br><a href="./">Cliquez ici pour revenir à l'accueil</a></p>
 </body>
 
 </html>

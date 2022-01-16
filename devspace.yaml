@@ -32,6 +32,11 @@ dev:
     - .git/
     uploadExcludePaths:
     - Dockerfile
+    - Dockerfile.dev
+    - .dockerignore
+    - .gitattributes
+    - .gitignore
+    - devspace.yaml
 
   # `dev.terminal` tells DevSpace to open a terminal as a last step during `devspace dev`
   terminal:
