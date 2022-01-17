@@ -23,6 +23,13 @@
 #recettes_main a
 {
     text-decoration: none;
+    color: black;
+}
+
+#recettes_create
+{
+    text-align: right;
+    font-weight: bold;
 }
 
 .recettes_container

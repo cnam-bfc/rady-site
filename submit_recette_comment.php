@@ -49,5 +49,6 @@ try {
     include('includes/error.php');
 }
 
+$_SESSION['REFRESH_PAGE'] = 2;
 include_once('includes/redirect_backward.php');
 ?>

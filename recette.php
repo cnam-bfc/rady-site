@@ -46,6 +46,32 @@ try {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
     include('includes/error.php');
 }
+
+// On récupère les étapes de la recette
+try {
+    $sqlQuery = 'SELECT * FROM Etapes WHERE idRecette = :idRecette';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'idRecette' => $recette['id']
+    ]);
+    $etapes = $sqlStatement->fetchAll();
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include('includes/error.php');
+}
+
+// On récupère les ingrédients de la recette
+try {
+    $sqlQuery = 'SELECT DISTINCT Ingredients.nom FROM Etapes, Ingredients, IngredientsEtapes WHERE Etapes.idRecette = :idRecette AND Etapes.idRecette = IngredientsEtapes.idRecette AND IngredientsEtapes.idIngredient = Ingredients.id';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'idRecette' => $recette['id']
+    ]);
+    $ingredients = $sqlStatement->fetchAll();
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include('includes/error.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +126,7 @@ try {
                         include('includes/error.php');
                     }
                     ?>
-                    <p id="recette_avg"><?php echo (($nbLike - $nbDislike) . ' Likes'); ?></p>
+                    <p id="recette_avg"><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>
                 </div>
 
                 <?php if (isset($_SESSION['USER_LOGGED'])) : ?>
@@ -126,14 +152,14 @@ try {
                         ?>
 
                         <!-- Bouton like -->
-                        <form action="submit_recette_like.php" method="POST" id="recette_like">
+                        <form action="submit_recette_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_like">
                             <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
                             <input type="hidden" name="aime" value="true" />
                             <input type="image" id="like_buttom" alt="like" src="img/like<?php if (count($likes) > 0 && $like['aime']) echo ("_selected"); ?>.png" /></br>
                         </form>
 
                         <!-- Bouton dislike -->
-                        <form action="submit_recette_like.php" method="POST" id="recette_dislike">
+                        <form action="submit_recette_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_dislike">
                             <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
                             <input type="hidden" name="aime" value="false" />
                             <input type="image" id="dislike_buttom" alt="dislike" src="img/dislike<?php if (count($likes) > 0 && !$like['aime']) echo ("_selected"); ?>.png" /></br>
@@ -142,20 +168,21 @@ try {
                 <?php endif; ?>
             </div>
 
-            <!-- Image de la recette -->
-            <div id="recette_img">
-                <p><img src="img/liquide_vaisselle.jpg" alt="image de la recette" /></p>
-            </div>
+            <?php if ($recette['imageUrl'] != null) : ?>
+                <!-- Image de la recette -->
+                <div id="recette_img">
+                    <p><img src="<?php echo ($recette['imageUrl']); ?>" alt="image de la recette" /></p>
+                </div>
+            <?php endif; ?>
 
             <!-- Ingrédents de la recette -->
             <div id="recette_ingrediants">
                 <h2>Ingrédients</h2>
 
                 <ul>
-                    <li>zefzef</li>
-                    <li>deze aee </li>
-                    <li>zefzef</li>
-                    <li>deze aee </li>
+                    <?php foreach ($ingredients as $ingredient) : ?>
+                        <li><?php echo ($ingredient['nom']); ?></li>
+                    <?php endforeach; ?>
                 </ul>
 
             </div>
@@ -164,10 +191,9 @@ try {
             <div id="recette_etapes">
                 <h2>Étapes</h2>
                 <ol>
-                    <li>zefzef</li>
-                    <li>deze aee </li>
-                    <li>zefzef</li>
-                    <li>deze aee </li>
+                    <?php foreach ($etapes as $etape) : ?>
+                        <li><?php echo ($etape['description']); ?></li>
+                    <?php endforeach; ?>
                 </ol>
             </div>
 
@@ -251,7 +277,7 @@ try {
                                 include('includes/error.php');
                             }
                             ?>
-                            <p><?php echo (($nbLike - $nbDislike) . ' Likes'); ?></p>
+                            <p><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>
 
                             <?php if (isset($_SESSION['USER_LOGGED'])) : ?>
                                 <?php
@@ -277,7 +303,7 @@ try {
                                 ?>
 
                                 <!-- Bouton liker commentaire -->
-                                <form action="submit_comment_like.php" method="POST" id="recette_like">
+                                <form action="submit_recette_comment_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_like">
                                     <input type="hidden" name="date" value="<?php echo ($commentaire['date']); ?>" />
                                     <input type="hidden" name="recette" value="<?php echo ($commentaire['idRecette']); ?>" />
                                     <input type="hidden" name="utilisateur" value="<?php echo ($commentaire['idUtilisateur']); ?>" />
@@ -286,7 +312,7 @@ try {
                                 </form>
 
                                 <!-- Bouton disliker commentaire -->
-                                <form action="submit_comment_like.php" method="POST" id="recette_dislike">
+                                <form action="submit_recette_comment_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_dislike">
                                     <input type="hidden" name="date" value="<?php echo ($commentaire['date']); ?>" />
                                     <input type="hidden" name="recette" value="<?php echo ($commentaire['idRecette']); ?>" />
                                     <input type="hidden" name="utilisateur" value="<?php echo ($commentaire['idUtilisateur']); ?>" />
@@ -296,7 +322,7 @@ try {
 
                                 <?php if ($commentaire['idUtilisateur'] == $_SESSION['USER_ID']) : ?>
                                     <!-- Bouton supprimer commentaire -->
-                                    <form action="submit_comment_deletion.php" method="POST" id="recette_deletion">
+                                    <form action="submit_recette_comment_deletion.php" method="POST" id="recette_deletion">
                                         <input type="hidden" name="date" value="<?php echo ($commentaire['date']); ?>" />
                                         <input type="hidden" name="recette" value="<?php echo ($commentaire['idRecette']); ?>" />
                                         <input type="image" id="del_comment_buttom" alt="delete comment" src="img/corbeille.png" /></br>
@@ -315,7 +341,7 @@ try {
 
             <?php if (isset($_SESSION['USER_LOGGED'])) : ?>
                 <div id="recette_form_comment">
-                    <form action="submit_comment.php" method="POST" id="recette_create_comment">
+                    <form action="submit_recette_comment.php" method="POST" id="recette_create_comment">
 
                         <label for="commentaire">Déposer un commentaire</label>
                         <textarea rows="5" cols="75" required placeholder="Ecrivez ici..." name="commentaire" id="recette_create_comment_text" maxlength="255"></textarea>

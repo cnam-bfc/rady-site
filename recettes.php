@@ -51,6 +51,10 @@ try {
                     <h1>Résultats de la recherche "<?php echo $search; ?>"</h1>
                 <?php endif; ?>
 
+                <div id="recettes_create">
+                    <p><a href="create_recette.php" />Créer une recette</p>
+                </div>
+
                 <?php foreach ($recettes as $recette) : ?>
                     <a href=<?php echo ('recette.php?id=' . htmlspecialchars($recette['id'])); ?>>
                         <div class="recettes_container">
@@ -63,7 +67,31 @@ try {
                             </div>
 
                             <div class="recettes_note">
-                                <p>NOTE</p>
+                                <?php
+                                // On récupère le nombre de like de la recette en bdd
+                                try {
+                                    $sqlQuery = 'SELECT aime FROM LikesRecettes WHERE idRecette = :idRecette';
+                                    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+                                    $sqlStatement->execute([
+                                        'idRecette' => $recette['id']
+                                    ]);
+                                    $likes = $sqlStatement->fetchAll();
+
+                                    $nbLike = 0;
+                                    $nbDislike = 0;
+                                    foreach ($likes as $like) {
+                                        if ($like['aime'] == 1) {
+                                            $nbLike++;
+                                        } else {
+                                            $nbDislike++;
+                                        }
+                                    }
+                                } catch (Exception $e) {
+                                    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+                                    include('includes/error.php');
+                                }
+                                ?>
+                                <p><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>
                             </div>
                         </div>
                     </a>
