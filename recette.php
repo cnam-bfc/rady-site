@@ -29,6 +29,11 @@ try {
 foreach ($recettes as $recette) {
 }
 
+if ($recette['visible'] == 0) {
+    $_SESSION['ERROR_MSG'] = 'Recette en préparation';
+    include('includes/error.php');
+}
+
 // On récupère les commentaires de la recette
 try {
     $sqlQuery = 'SELECT * FROM Commentaires WHERE idRecette = :idRecette';
@@ -71,8 +76,32 @@ try {
             <div id="recette_note_like">
                 <!-- Notes / Likes de la recette -->
                 <div id="recette_note_avg">
-                    <p id="recette_note">Je suis la note en étoile</p>
-                    <p id="recette_avg">Je suis la moyenne</p>
+                    <?php
+                    // On récupère le nombre de like de la recette en bdd
+                    try {
+                        $sqlQuery = 'SELECT aime FROM LikesRecettes WHERE idRecette = :idRecette';
+                        $sqlStatement = $mysqlClient->prepare($sqlQuery);
+                        $sqlStatement->execute([
+                            'idRecette' => $recette['id']
+                        ]);
+                        $likes = $sqlStatement->fetchAll();
+
+                        $nbLike = 0;
+                        $nbDislike = 0;
+                        foreach ($likes as $like) {
+                            if ($like['aime'] == 1) {
+                                $nbLike++;
+                            } else {
+                                $nbDislike++;
+                            }
+                        }
+                    } catch (Exception $e) {
+                        $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+                        include('includes/error.php');
+                    }
+                    ?>
+                    <p id="recette_note">étoiles</p>
+                    <p id="recette_avg"><?php echo (($nbLike - $nbDislike) . ' Likes'); ?></p>
                 </div>
 
                 <?php if (isset($_SESSION['USER_LOGGED'])) : ?>
