@@ -45,11 +45,11 @@ try {
     $commentaires = $sqlStatement->fetchAll();
     if (count($commentaires) == 0) {
         $_SESSION['ERROR_MSG'] = 'Commentaire introuvable';
-        include('includes/error.php');
+        include_once('includes/error.php');
     }
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // On supprime si il existe déjà un like en base de données
@@ -64,7 +64,7 @@ try {
     ]);
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // On ajoute le like en base de données
@@ -80,7 +80,7 @@ try {
     ]);
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 include_once('includes/redirect_backward.php');

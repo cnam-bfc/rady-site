@@ -23,14 +23,14 @@ try {
     $recettes = $sqlStatement->fetchAll();
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Recettes</title>
     <link rel="stylesheet" href="css/recettes.css" />
 </head>
@@ -52,7 +52,7 @@ try {
                 <?php endif; ?>
 
                 <div id="recettes_create">
-                    <p><a href="create_recette.php" />Créer une recette</p>
+                    <p><a href="recette_create.php" />Créer une recette</p>
                 </div>
 
                 <?php foreach ($recettes as $recette) : ?>
@@ -88,7 +88,7 @@ try {
                                     }
                                 } catch (Exception $e) {
                                     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                                    include('includes/error.php');
+                                    include_once('includes/error.php');
                                 }
                                 ?>
                                 <p><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>

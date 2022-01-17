@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Accueil</title>
     <link rel="stylesheet" href="css/accueil.css" />
 </head>

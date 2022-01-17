@@ -25,7 +25,7 @@ try {
     ]);
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 include_once('includes/redirect_backward.php');

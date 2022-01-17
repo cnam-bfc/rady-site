@@ -9,7 +9,7 @@ if (isset($_SESSION['USER_LOGGED'])) {
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Inscription</title>
     <link rel="stylesheet" href="css/auth.css" />
 </head>

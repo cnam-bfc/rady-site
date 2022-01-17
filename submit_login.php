@@ -29,7 +29,7 @@ try {
     $utilisateurs = $sqlStatement->fetchAll();
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 foreach ($utilisateurs as $utilisateur) {
@@ -45,7 +45,7 @@ foreach ($utilisateurs as $utilisateur) {
 
 if (!isset($pseudo)) {
     $_SESSION['ERROR_MSG'] = 'Identifiant ou mot de passe incorrect';
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // On sauvegarde les informations de l'utilisateur dans la session

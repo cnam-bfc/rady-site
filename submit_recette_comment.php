@@ -28,11 +28,11 @@ try {
     $recettes = $sqlStatement->fetchAll();
     if (count($recettes) == 0) {
         $_SESSION['ERROR_MSG'] = 'Recette introuvable';
-        include('includes/error.php');
+        include_once('includes/error.php');
     }
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // On ajoute le commentaire en base de données
@@ -46,7 +46,7 @@ try {
     ]);
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 $_SESSION['REFRESH_PAGE'] = 2;

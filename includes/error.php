@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Erreur</title>
 </head>
 

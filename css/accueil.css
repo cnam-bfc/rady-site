@@ -12,8 +12,8 @@
     background-image : url("../img/accueil_flou.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-        padding-top: 30px;
-        padding-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     display: flex;
 }
 
@@ -120,6 +120,12 @@ En responsive format petit/mobile ou alors utiliser wrap il faudra mettre les re
         height:275px;
         width:350px;
     }
+
+    #accueil_actualites
+        {
+            margin-right: 50px;
+            margin-left:50px;
+        }
 }
 
 @media all and (max-width: 1100px)
@@ -135,5 +141,22 @@ En responsive format petit/mobile ou alors utiliser wrap il faudra mettre les re
         {
             align-items: center;
         }
+
+}
+
+@media all and (max-width: 900px)
+{
+    #accueil_actualites
+    {
+        margin-right:0;
+        margin-left:0;
+    }
+
+    #accueil_banniere video
+{
+    margin:auto;
+    width: 400px;
+    height: auto;
+}
 
 }

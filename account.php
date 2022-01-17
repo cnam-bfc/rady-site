@@ -9,7 +9,7 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Mon compte</title>
     <link rel="stylesheet" href="css/account.css" />
 </head>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['USER_LOGGED'])) {
                     </div>
                 </div>
 
-                <a href="submit_account_deletion.php" id="account_delete">Supprimer mon compte</a>
+                <a href="submit_account_delete.php" id="account_delete">Supprimer mon compte</a>
 
             </div>
 

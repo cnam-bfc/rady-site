@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Redirection...</title>
     <script language="JavaScript" type="text/javascript">
         setTimeout("window.history.back();", 100);

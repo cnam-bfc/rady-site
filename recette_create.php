@@ -4,27 +4,14 @@
 if (!isset($_SESSION['USER_LOGGED'])) {
     include_once('includes/redirect_backward.php');
 }
-
-
-if (!isset($_SESSION['RECETTE_CREATE'])) {
-    $_SESSION['RECETTE_CREATE'] = true;
-    $_SESSION['RECETTE_CREATE_ID'] = 1;
-} elseif (!$_SESSION['RECETTE_CREATE']) {
-    $_SESSION['RECETTE_CREATE'] = true;
-    $_SESSION['RECETTE_CREATE_ID']++;
-}
-
-$prefix = 'RECETTE_CREATE_' . $_SESSION['RECETTE_CREATE_ID'] . '_';
-
-
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Recettes</title>
-    <link rel="stylesheet" href="css/create_recette.css" />
+    <link rel="stylesheet" href="css/recette_create.css" />
 </head>
 
 <body>
@@ -38,7 +25,7 @@ $prefix = 'RECETTE_CREATE_' . $_SESSION['RECETTE_CREATE_ID'] . '_';
 
             <div id="create_recette_main_container">
 
-                <form action="à toi de jouer victor.php" method="POST" id="create_recette_form">
+                <form action="submit_recette_create.php" method="POST" id="create_recette_form">
 
                     <div id="create_recette_information">
 
@@ -46,15 +33,15 @@ $prefix = 'RECETTE_CREATE_' . $_SESSION['RECETTE_CREATE_ID'] . '_';
 
                         <h3>Titre de la recette</h3>
 
-                        <input type="text" placeholder="Titre" name="create_recette_title_text" value="<?php if(!isset($_SESSION[$prefix.'title']))?>">
+                        <input type="text" placeholder="Titre" required name="title">
 
-                        <input type="submit" value="Enregistrer" name="create_recette_title_buttom">
+                        <!-- en théorie plus besoin du bouton
+                        <input type="submit" value="Enregistrer" name="create_recette_title_buttom"> -->
 
                         <h3>Brève description</h3>
-                        
-                        
 
-                        <input type="submit" value="ajouter une description" name="create_recette_desc_buttom">
+                        <textarea rows="4" cols="75" required placeholder="Ecrivez ici une courte description de la recette..." 
+                        name="description" id="create_recette_desc" maxlength="255"></textarea>
 
                     </div>
 
@@ -103,7 +90,7 @@ $prefix = 'RECETTE_CREATE_' . $_SESSION['RECETTE_CREATE_ID'] . '_';
                     </div> -->
 
                     <div id="create_recette_final_buttom">
-                        <input type="submit" value="valider la recette" name="create_recette_valide_recette_buttom">
+                        <input type="submit" value="Créer la recette">
                         <!-- <input type="submit" value="tout effacer" name="create_recette_del_recette_buttom"> -->
                     </div>
 

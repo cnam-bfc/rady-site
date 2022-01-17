@@ -18,20 +18,20 @@ try {
     $recettes = $sqlStatement->fetchAll();
     if (count($recettes) == 0) {
         $_SESSION['ERROR_MSG'] = 'Recette introuvable';
-        include('includes/error.php');
+        include_once('includes/error.php');
     }
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // La recette est dans le tableau $recette
 foreach ($recettes as $recette) {
 }
 
-if ($recette['visible'] == 0) {
+if ($recette['visible'] == 0 && (!isset($_SESSION['USER_LOGGED']) || $recette['idAuteur'] != $_SESSION['USER_ID'])) {
     $_SESSION['ERROR_MSG'] = 'Recette en préparation';
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // On récupère les commentaires de la recette
@@ -44,7 +44,7 @@ try {
     $commentaires = $sqlStatement->fetchAll();
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // On récupère les étapes de la recette
@@ -57,12 +57,12 @@ try {
     $etapes = $sqlStatement->fetchAll();
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 
 // On récupère les ingrédients de la recette
 try {
-    $sqlQuery = 'SELECT DISTINCT Ingredients.nom FROM Etapes, Ingredients, IngredientsEtapes WHERE Etapes.idRecette = :idRecette AND Etapes.idRecette = IngredientsEtapes.idRecette AND IngredientsEtapes.idIngredient = Ingredients.id';
+    $sqlQuery = 'SELECT * FROM Ingredients, IngredientsRecettes WHERE IngredientsRecettes.idRecette = :idRecette AND IngredientsRecettes.idIngredient = Ingredients.id';
     $sqlStatement = $mysqlClient->prepare($sqlQuery);
     $sqlStatement->execute([
         'idRecette' => $recette['id']
@@ -70,7 +70,7 @@ try {
     $ingredients = $sqlStatement->fetchAll();
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-    include('includes/error.php');
+    include_once('includes/error.php');
 }
 ?>
 
@@ -78,7 +78,7 @@ try {
 <html>
 
 <head>
-    <?php include('includes/head.php'); ?>
+    <?php include_once('includes/head.php'); ?>
     <title>Recettes</title>
     <link rel="stylesheet" href="css/recette.css" />
 </head>
@@ -123,7 +123,7 @@ try {
                         }
                     } catch (Exception $e) {
                         $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                        include('includes/error.php');
+                        include_once('includes/error.php');
                     }
                     ?>
                     <p id="recette_avg"><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>
@@ -147,19 +147,19 @@ try {
                             }
                         } catch (Exception $e) {
                             $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                            include('includes/error.php');
+                            include_once('includes/error.php');
                         }
                         ?>
 
                         <!-- Bouton like -->
-                        <form action="submit_recette_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_like">
+                        <form action="submit_recette_like<?php if (count($likes) > 0 && $like['aime']) echo ("_delete"); ?>.php" method="POST" id="recette_like">
                             <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
                             <input type="hidden" name="aime" value="true" />
                             <input type="image" id="like_buttom" alt="like" src="img/like<?php if (count($likes) > 0 && $like['aime']) echo ("_selected"); ?>.png" /></br>
                         </form>
 
                         <!-- Bouton dislike -->
-                        <form action="submit_recette_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_dislike">
+                        <form action="submit_recette_like<?php if (count($likes) > 0 && !$like['aime']) echo ("_delete"); ?>.php" method="POST" id="recette_dislike">
                             <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
                             <input type="hidden" name="aime" value="false" />
                             <input type="image" id="dislike_buttom" alt="dislike" src="img/dislike<?php if (count($likes) > 0 && !$like['aime']) echo ("_selected"); ?>.png" /></br>
@@ -181,7 +181,7 @@ try {
 
                 <ul>
                     <?php foreach ($ingredients as $ingredient) : ?>
-                        <li><?php echo ($ingredient['nom']); ?></li>
+                        <li><?php echo ('<strong>' . $ingredient['nom'] . '</strong>: ' . $ingredient['quantite'] . ' ' . $ingredient['unite']); ?></li>
                     <?php endforeach; ?>
                 </ul>
 
@@ -209,7 +209,7 @@ try {
                     $utilisateurs = $sqlStatement->fetchAll();
                 } catch (Exception $e) {
                     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                    include('includes/error.php');
+                    include_once('includes/error.php');
                 }
 
                 foreach ($utilisateurs as $utilisateur) {
@@ -235,7 +235,7 @@ try {
                         $auteursCommentaire = $sqlStatement->fetchAll();
                     } catch (Exception $e) {
                         $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                        include('includes/error.php');
+                        include_once('includes/error.php');
                     }
 
                     foreach ($auteursCommentaire as $auteurCommentaire) {
@@ -274,7 +274,7 @@ try {
                                 }
                             } catch (Exception $e) {
                                 $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                                include('includes/error.php');
+                                include_once('includes/error.php');
                             }
                             ?>
                             <p><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>
@@ -298,12 +298,12 @@ try {
                                     }
                                 } catch (Exception $e) {
                                     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                                    include('includes/error.php');
+                                    include_once('includes/error.php');
                                 }
                                 ?>
 
                                 <!-- Bouton liker commentaire -->
-                                <form action="submit_recette_comment_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_like">
+                                <form action="submit_recette_comment_like<?php if (count($likes) > 0 && $like['aime']) echo ("_delete"); ?>.php" method="POST" id="recette_like">
                                     <input type="hidden" name="date" value="<?php echo ($commentaire['date']); ?>" />
                                     <input type="hidden" name="recette" value="<?php echo ($commentaire['idRecette']); ?>" />
                                     <input type="hidden" name="utilisateur" value="<?php echo ($commentaire['idUtilisateur']); ?>" />
@@ -312,7 +312,7 @@ try {
                                 </form>
 
                                 <!-- Bouton disliker commentaire -->
-                                <form action="submit_recette_comment_like<?php if (count($likes) > 0) echo ("_deletion"); ?>.php" method="POST" id="recette_dislike">
+                                <form action="submit_recette_comment_like<?php if (count($likes) > 0 && !$like['aime']) echo ("_delete"); ?>.php" method="POST" id="recette_dislike">
                                     <input type="hidden" name="date" value="<?php echo ($commentaire['date']); ?>" />
                                     <input type="hidden" name="recette" value="<?php echo ($commentaire['idRecette']); ?>" />
                                     <input type="hidden" name="utilisateur" value="<?php echo ($commentaire['idUtilisateur']); ?>" />
@@ -322,7 +322,7 @@ try {
 
                                 <?php if ($commentaire['idUtilisateur'] == $_SESSION['USER_ID']) : ?>
                                     <!-- Bouton supprimer commentaire -->
-                                    <form action="submit_recette_comment_deletion.php" method="POST" id="recette_deletion">
+                                    <form action="submit_recette_comment_delete.php" method="POST" id="recette_deletion">
                                         <input type="hidden" name="date" value="<?php echo ($commentaire['date']); ?>" />
                                         <input type="hidden" name="recette" value="<?php echo ($commentaire['idRecette']); ?>" />
                                         <input type="image" id="del_comment_buttom" alt="delete comment" src="img/corbeille.png" /></br>
