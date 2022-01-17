@@ -100,7 +100,6 @@ try {
                         include('includes/error.php');
                     }
                     ?>
-                    <p id="recette_note">étoiles</p>
                     <p id="recette_avg"><?php echo (($nbLike - $nbDislike) . ' Likes'); ?></p>
                 </div>
 
