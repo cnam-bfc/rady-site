@@ -73,25 +73,22 @@
 
 #like_buttom
 {
-    width: 40px;
+    width: 30px;
     height: auto;
 }
 
 #dislike_buttom
 {
-    width: 24px;
+    width: 30px;
     height: auto;
 }
 
-.recette_like_selected
+#del_comment_buttom
 {
-    background: green;
+    width: 30px;
+    height: auto;
 }
 
-.recette_dislike_selected
-{
-    background: red;
-}
 /*Partie image */
 
 
@@ -174,12 +171,6 @@ fort probable que ça ne soit plus le cas à l'avenir */
 #recette_container_name_like form
 {
     width: 50px;
-}
-
-#recette_del_comment input
-{
-    height: 50px;
-    width: auto;
 }
 
 #recette_comment

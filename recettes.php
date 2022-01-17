@@ -10,11 +10,11 @@ if (
 
 try {
     if (!isset($search)) {
-        $sqlQuery = 'SELECT * FROM Recettes';
+        $sqlQuery = 'SELECT * FROM Recettes WHERE visible = 1';
         $sqlStatement = $mysqlClient->prepare($sqlQuery);
         $sqlStatement->execute();
     } else {
-        $sqlQuery = 'SELECT * FROM Recettes WHERE nom LIKE :search';
+        $sqlQuery = 'SELECT * FROM Recettes WHERE visible = 1 AND nom LIKE :search';
         $sqlStatement = $mysqlClient->prepare($sqlQuery);
         $sqlStatement->execute([
             'search' => '%' . $search . '%'

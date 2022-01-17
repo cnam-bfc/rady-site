@@ -4,6 +4,10 @@ session_start();
 ?>
 
 <?php
+include_once('vendor/autoload.php');
+?>
+
+<?php
 // Connexion à la base de données
 try {
     $mysqlClient = new PDO('mysql:host=10.254.1.3;dbname=rady;charset=utf8', 'rady', 'yWEFf3ioTM9BHmAa');

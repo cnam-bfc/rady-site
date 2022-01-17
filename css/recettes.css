@@ -41,7 +41,7 @@
 {
     border-right: 3px solid rgb(63, 62, 62);
     box-shadow: 1px 1px 1px grey;
-    height: 100px;
+    min-height: 100px;
     width: 300px;
     text-align: center;
     padding: 5px;

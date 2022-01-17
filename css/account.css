@@ -1,0 +1,73 @@
+.main_div
+{
+    background:rgb(207, 207, 205);
+}
+
+#account_main_div
+{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 170px 0 170px;
+    align-items: center;
+    margin:auto;
+}
+
+#account_main_div h1
+{
+    text-align: center;
+}
+
+#account_container
+{
+    border: 2px solid rgb(26, 25, 25);
+    display: flex;
+    flex-direction: column;
+    /*padding-left: 70px;
+    padding-right: 70px;*/
+    max-width: 600px;
+    margin: auto;
+    padding: 5px 30px 5px 30px;
+    background: white;
+    border-radius: 5px;
+}
+
+#account_main_div h2
+{
+    border-bottom: 1px solid grey;
+    font-weight: bold;
+}
+
+#account_info
+{
+    display: flex;
+    flex-direction: row;
+}
+
+#account_info2
+{
+    font-weight: bold;
+    text-align: right;
+    flex:1;
+}
+
+#account_info3
+{
+    text-align: left;
+    flex:1;
+}
+
+#account_info p 
+{
+    border-bottom: 1px dashed grey;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#account_delete
+{
+    text-align: right;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: rgb(190, 43, 43);
+    padding: 1px;
+}

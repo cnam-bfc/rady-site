@@ -1,1 +1,5 @@
-{}
+{
+    "name": "root/rady-site",
+    "type": "project",
+    "minimum-stability": "stable"
+}
