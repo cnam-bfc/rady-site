@@ -16,7 +16,6 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 
 <body>
     <div class="main_div">
-        <?php $header_searchbar_focus = true; ?>
         <header><?php include_once('includes/header.php'); ?></header>
 
         <div id="create_recette_main">
@@ -40,12 +39,39 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 
                         <h3>Brève description</h3>
 
-                        <textarea rows="4" cols="75" required placeholder="Ecrivez ici une courte description de la recette..." 
-                        name="description" id="create_recette_desc" maxlength="255"></textarea>
+                        <textarea rows="4" cols="75" required placeholder="Ecrivez ici une courte description de la recette..." name="description" id="create_recette_desc" maxlength="255"></textarea>
 
                     </div>
 
-<!--                     <div id="create_recette_content">
+                    <div id="create_recette_information_supp">
+
+                        <form method="post" action="à toi de jouer gros bg de victor.php">
+
+                            <p>
+                                <label for="difficulte">Quelle est la difficulté de la recette ?</label><br />
+                                <select nom="difficulte" id="recette_create_difficulte">
+                                    <option value="Facile">Facile</option>
+                                    <option value="Moyenne">Moyenne</option>
+                                    <option value="Difficile">Difficile</option>
+                                </select>
+                            </p>
+
+                            
+
+                        </form>
+
+
+                        </p>
+
+
+
+                    </div>
+
+                    <div id="create_recette_img">
+
+                    </div>
+
+                    <!--                     <div id="create_recette_content">
 
                         <h2>Contenu de la recette</h2>
 

@@ -51,9 +51,11 @@ try {
                     <h1>Résultats de la recherche "<?php echo $search; ?>"</h1>
                 <?php endif; ?>
 
-                <div id="recettes_create">
-                    <p><a href="recette_create.php" />Créer une recette</p>
-                </div>
+                <?php if (isset($_SESSION['USER_LOGGED'])) : ?>
+                    <div id="recettes_create">
+                        <p><a href="recette_create.php" />Créer une recette</p>
+                    </div>
+                <?php endif; ?>
 
                 <?php foreach ($recettes as $recette) : ?>
                     <a href=<?php echo ('recette.php?id=' . htmlspecialchars($recette['id'])); ?>>

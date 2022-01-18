@@ -6,28 +6,29 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 }
 
 if (
-    !isset($_POST['commentaire'])
-    || empty($_POST['commentaire'])
-    || !isset($_POST['recette'])
+    !isset($_POST['recette'])
     || empty($_POST['recette'])
+    || !isset($_POST['id'])
+    || empty($_POST['id'])
 ) {
     $_SESSION['ERROR_MSG'] = 'Informations fournies non valides !';
     include_once('includes/error.php');
 }
 
-$commentaire = $_POST['commentaire'];
 $recette = htmlspecialchars($_POST['recette']);
+$id = htmlspecialchars($_POST['id']);
 
-// On vérifie que la recette existe
+// On vérifie que la recette existe et que l'utilisateur est l'auteur de celle-ci
 try {
-    $sqlQuery = 'SELECT * FROM Recettes WHERE id = :id';
+    $sqlQuery = 'SELECT * FROM Recettes WHERE id = :id AND idAuteur = :idAuteur';
     $sqlStatement = $mysqlClient->prepare($sqlQuery);
     $sqlStatement->execute([
-        'id' => $recette
+        'id' => $recette,
+        'idAuteur' => $_SESSION['USER_ID']
     ]);
     $recettes = $sqlStatement->fetchAll();
     if (count($recettes) == 0) {
-        $_SESSION['ERROR_MSG'] = 'Recette introuvable';
+        $_SESSION['ERROR_MSG'] = 'Recette introuvable ou vous n\'etes pas l\'auteur de celle-ci';
         include_once('includes/error.php');
     }
 } catch (Exception $e) {
@@ -35,20 +36,18 @@ try {
     include_once('includes/error.php');
 }
 
-// On ajoute le commentaire en base de données
+// On supprime l'étape en base de données
 try {
-    $sqlQuery = 'INSERT INTO Commentaires (idRecette, idUtilisateur, commentaire) VALUES (:idRecette, :idUtilisateur, :commentaire)';
+    $sqlQuery = 'DELETE FROM Etapes WHERE idRecette = :idRecette AND id = :id';
     $sqlStatement = $mysqlClient->prepare($sqlQuery);
     $sqlStatement->execute([
         'idRecette' => $recette,
-        'idUtilisateur' => $_SESSION['USER_ID'],
-        'commentaire' => $commentaire
+        'id' => $id
     ]);
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
     include_once('includes/error.php');
 }
 
-$_SESSION['REFRESH_PAGE'] = 2;
 include_once('includes/redirect_backward.php');
 ?>

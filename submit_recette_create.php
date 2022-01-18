@@ -15,8 +15,8 @@ if (
     include_once('includes/error.php');
 }
 
-$title = htmlspecialchars($_POST['title']);
-$description = htmlspecialchars($_POST['description']);
+$title = $_POST['title'];
+$description = $_POST['description'];
 
 // On ajoute la recette en base de données
 try {
