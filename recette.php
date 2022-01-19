@@ -79,7 +79,7 @@ try {
 
 <head>
     <?php include_once('includes/head.php'); ?>
-    <title>Recettes</title>
+    <title>Recette</title>
     <link rel="stylesheet" href="css/recette.css" />
 </head>
 
@@ -102,19 +102,26 @@ try {
             <div id="recette_title">
                 <h1><?php echo htmlspecialchars($recette['nom']); ?></h1>
 
-                <form class="edit_buttom">
-                    <input Type="image" src="img/edit.png" alt="éditer le titre" />
-                </form>
+                <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                    <form action="recette_create.php" method="POST" class="edit_buttom">
+                        <input type="hidden" name="edit" value="true" />
+                        <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
+                        <input type="image" src="img/edit.png" alt="éditer le titre" />
+                    </form>
+                <?php endif; ?>
             </div>
 
             <!-- Description de la recette -->
             <div id="recette_desc">
                 <h3><?php echo htmlspecialchars($recette['description']); ?></h3>
 
-                <form class="edit_buttom">
-                    <input Type="image" src="img/edit.png" alt="éditer la description" />
-                </form>
-
+                <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                    <form action="recette_create.php" method="POST" class="edit_buttom">
+                        <input type="hidden" name="edit" value="true" />
+                        <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
+                        <input Type="image" src="img/edit.png" alt="éditer la description" />
+                    </form>
+                <?php endif; ?>
             </div>
 
             <!-- Likes de la recette -->
@@ -201,27 +208,43 @@ try {
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
-                <?php if ($recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
                     <?php if (!isset($recette['difficulte']) && !isset($recette['tempsPreparation']) && !isset($recette['tempsConservation'])) : ?>
                         <p>Ajouter des informations complémentaires</p>
                     <?php endif; ?>
-                    <form class="edit_buttom">
-                        <input Type="image" src="img/edit.png" alt="éditer les informations" />
+                    <form action="recette_create.php" method="POST" class="edit_buttom">
+                        <input type="hidden" name="edit" value="true" />
+                        <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
+                        <?php if (!isset($recette['difficulte']) && !isset($recette['tempsPreparation']) && !isset($recette['tempsConservation'])) : ?>
+                            <input Type="image" src="img/add.png" alt="ajouter les informations" />
+                        <?php else : ?>
+                            <input Type="image" src="img/edit.png" alt="éditer les informations" />
+                        <?php endif; ?>
                     </form>
                 <?php endif; ?>
             </div>
 
             <!-- Image de la recette -->
             <div id="recette_img_container">
-                <?php if ($recette['imageUrl'] != null) : ?>
+                <?php if ($recette['imageUrl'] == null) : ?>
+                    <p>Ajouter une image</p>
+                <?php else : ?>
                     <div id="recette_img">
                         <p><img src="<?php echo ($recette['imageUrl']); ?>" alt="image de la recette" /></p>
                     </div>
                 <?php endif; ?>
 
-                <form class="edit_buttom">
-                    <input Type="image" src="img/edit.png" alt="éditer les informations" />
-                </form>
+                <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                    <form action="recette_create.php" method="POST" class="edit_buttom">
+                        <input type="hidden" name="edit" value="true" />
+                        <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
+                        <?php if ($recette['imageUrl'] == null) : ?>
+                            <input Type="image" src="img/add.png" alt="ajouter une image" />
+                        <?php else : ?>
+                            <input Type="image" src="img/edit.png" alt="éditer l'image" />
+                        <?php endif; ?>
+                    </form>
+                <?php endif; ?>
             </div>
 
             <!-- Ingrédents de la recette -->
@@ -238,6 +261,7 @@ try {
                         <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
                             <div class="recette_ingredient_etape_container_buttom">
                                 <form action="recette_ingredient.php" method="POST">
+                                    <input type="hidden" name="edit" value="true" />
                                     <input type="hidden" name="recette" value="<?php echo ($ingredient['idRecette']); ?>" />
                                     <input type="hidden" name="ingredient" value="<?php echo ($ingredient['idIngredient']); ?>" />
                                     <input type="image" alt="bouton éditer ingredient" src="img/edit.png" />
@@ -255,7 +279,7 @@ try {
                 <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
                     <div class="recette_add">
                         <form action="recette_ingredient.php" method="POST">
-                            <input type="hidden" name="recette" value="<?php echo ($etape['idRecette']); ?>" />
+                            <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
                             <input type="image" alt="bouton ajout ingrédient" src="img/add.png" />
                         </form>
                     </div>
@@ -279,23 +303,25 @@ try {
                         <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
                             <div class="recette_ingredient_etape_container_buttom">
                                 <form action="recette_etape.php" method="POST">
+                                    <input type="hidden" name="edit" value="true" />
                                     <input type="hidden" name="recette" value="<?php echo ($etape['idRecette']); ?>" />
-                                    <input type="hidden" name="id" value="<?php echo ($etape['id']); ?>" />
+                                    <input type="hidden" name="etape" value="<?php echo ($etape['id']); ?>" />
                                     <input type="image" alt="bouton éditer étape" src="img/edit.png" />
                                 </form>
                                 <form action="submit_recette_etape_delete.php" method="POST">
                                     <input type="hidden" name="recette" value="<?php echo ($etape['idRecette']); ?>" />
-                                    <input type="hidden" name="id" value="<?php echo ($etape['id']); ?>" />
+                                    <input type="hidden" name="etape" value="<?php echo ($etape['id']); ?>" />
                                     <input type="image" alt="bouton supprimer étape" src="img/corbeille.png" />
                                 </form>
                             </div>
                         <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
+
                 <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
                     <div class="recette_add">
                         <form action="recette_etape.php" method="POST">
-                            <input type="hidden" name="recette" value="<?php echo ($etape['idRecette']); ?>" />
+                            <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
                             <input type="image" alt="bouton ajout étape" src="img/add.png" />
                         </form>
                     </div>

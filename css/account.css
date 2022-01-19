@@ -71,3 +71,23 @@
     color: rgb(190, 43, 43);
     padding: 1px;
 }
+
+/*Mes recettes*/
+
+#account_recette
+{
+    border: 2px solid rgb(26, 25, 25);
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto auto auto;
+    padding: 5px 30px 5px 30px;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#account_recette h2
+{
+    margin:auto;
+}

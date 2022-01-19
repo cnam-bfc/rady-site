@@ -1,7 +1,7 @@
 <div id="header_main_div">
     <div id="header_logo">
         <a href="./">
-            <img src="img/logo - 64x64.png" alt="Logo de Rady" />
+            <img src="img/logo.svg" alt="Logo de Rady" />
         </a>
         <a href="./">
             <h1>Rady</h1>

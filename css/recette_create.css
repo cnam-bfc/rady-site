@@ -28,6 +28,13 @@
 #create_recette_main_container h2
 {
     border-bottom: 1px dashed black;
+    text-align: center;
+    font-weight: bold;
+}
+
+#create_recette_main_container input, #create_recette_main_container textarea
+{
+    margin-bottom: 10px;
 }
 
 #create_recette_final_buttom
@@ -50,4 +57,19 @@
 {
     font-weight: bold;
     text-align: center;
+}
+
+/*Informations supplémentaires*/
+
+#create_recette_information_supp
+{
+    border-top: 1px dashed black;
+    margin-top: 15px;
+}
+
+#recette_create_finish_container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }

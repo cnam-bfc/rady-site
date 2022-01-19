@@ -6,8 +6,8 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 }
 
 if (
-    !isset($_POST['title'])
-    || empty($_POST['title'])
+    !isset($_POST['nom'])
+    || empty($_POST['nom'])
     || !isset($_POST['description'])
     || empty($_POST['description'])
 ) {
@@ -15,7 +15,7 @@ if (
     include_once('includes/error.php');
 }
 
-$title = $_POST['title'];
+$nom = $_POST['nom'];
 $description = $_POST['description'];
 
 // On ajoute la recette en base de données
@@ -23,7 +23,7 @@ try {
     $sqlQuery = 'INSERT INTO Recettes (nom, description, idAuteur) VALUES (:nom, :description, :idAuteur) RETURNING id';
     $sqlStatement = $mysqlClient->prepare($sqlQuery);
     $sqlStatement->execute([
-        'nom' => $title,
+        'nom' => $nom,
         'idAuteur' => $_SESSION['USER_ID'],
         'description' => $description
     ]);

@@ -8,15 +8,15 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 if (
     !isset($_POST['recette'])
     || empty($_POST['recette'])
-    || !isset($_POST['id'])
-    || empty($_POST['id'])
+    || !isset($_POST['etape'])
+    || empty($_POST['etape'])
 ) {
     $_SESSION['ERROR_MSG'] = 'Informations fournies non valides !';
     include_once('includes/error.php');
 }
 
 $recette = htmlspecialchars($_POST['recette']);
-$id = htmlspecialchars($_POST['id']);
+$id = htmlspecialchars($_POST['etape']);
 
 // On vérifie que la recette existe et que l'utilisateur est l'auteur de celle-ci
 try {

@@ -68,7 +68,7 @@ try {
                                 <p><?php echo htmlspecialchars($recette['description']); ?></p>
                             </div>
 
-                            <div class="recettes_note">
+                            <div class="recettes_note_auteur">
                                 <?php
                                 // On récupère le nombre de like de la recette en bdd
                                 try {
@@ -94,6 +94,27 @@ try {
                                 }
                                 ?>
                                 <p><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>
+
+                                <?php if (isset($recette['idAuteur'])) : ?>
+                                    <?php
+                                    // On récupère l'auteur de la recette
+                                    try {
+                                        $sqlQuery = 'SELECT * FROM Utilisateurs WHERE id = :id';
+                                        $sqlStatement = $mysqlClient->prepare($sqlQuery);
+                                        $sqlStatement->execute([
+                                            'id' => $recette['idAuteur']
+                                        ]);
+                                        $utilisateurs = $sqlStatement->fetchAll();
+                                    } catch (Exception $e) {
+                                        $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+                                        include_once('includes/error.php');
+                                    }
+
+                                    foreach ($utilisateurs as $utilisateur) {
+                                    }
+                                    ?>
+                                    <strong><?php echo ($utilisateur['pseudo']); ?></strong>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </a>

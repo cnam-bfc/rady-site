@@ -49,6 +49,14 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 
             </div>
 
+            <div id="account_recette">
+
+                <h2>Mes recettes</h2>
+
+                <p><a>NOM RECETTE</a><p>
+
+            </div>
+
         </div>
     </div>
 
