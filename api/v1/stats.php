@@ -1,5 +1,5 @@
 <?php
-include_once('init.php');
+include_once('includes/init.php');
 
 try {
     $sqlQuery = 'SELECT COUNT(*) as nb FROM Recettes WHERE visible = 1';

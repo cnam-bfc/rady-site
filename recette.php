@@ -92,9 +92,12 @@ try {
             <!-- Nom de la recette -->
             <div id="recette_title">
 
-                <form action="à toi de jouer big thor" method="POST" class="del_buttom">
-                    <input type="image" src="img/corbeille.png" alt="supprimer la recette" />
-                </form>
+                <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                    <form action="submit_recette_delete.php" method="POST" class="del_buttom">
+                        <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
+                        <input type="image" src="img/corbeille.png" alt="supprimer la recette" />
+                    </form>
+                <?php endif; ?>
 
                 <h1><?php echo htmlspecialchars($recette['nom']); ?></h1>
 
@@ -233,9 +236,9 @@ try {
 
             <!-- Image de la recette -->
             <div id="recette_img_container">
-                <?php if ($recette['imageUrl'] == null) : ?>
+                <?php if ($recette['imageUrl'] == null && isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
                     <p>Ajouter une image</p>
-                <?php else : ?>
+                <?php elseif ($recette['imageUrl'] != null) : ?>
                     <div id="recette_img">
                         <p><img src="<?php echo ($recette['imageUrl']); ?>" alt="image de la recette" /></p>
                     </div>

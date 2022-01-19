@@ -1,5 +1,5 @@
 <?php
-include_once('init.php');
+include_once('includes/init.php');
 
 if (
     !isset($_GET['id'])
@@ -31,6 +31,7 @@ $nb = count($utilisateurs);
 foreach ($utilisateurs as $utilisateur) {
     $nb--;
     echo ('utilisateur_' . $utilisateur['id'] . $separator);
+    echo (displayKeyValue($utilisateur, 'id', $separator, true));
     echo (displayKeyValue($utilisateur, 'pseudo', $separator, true));
     echo (displayKeyValue($utilisateur, 'email', $separator, true));
     echo (displayKeyValue($utilisateur, 'date', $separator, true));

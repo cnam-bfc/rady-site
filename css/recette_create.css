@@ -32,11 +32,6 @@
     font-weight: bold;
 }
 
-#create_recette_main_container input, #create_recette_main_container textarea
-{
-    margin-bottom: 10px;
-}
-
 #create_recette_final_buttom
 {
     border-top: 1px dashed black;
@@ -72,4 +67,9 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+}
+
+#recette_create_difficulte
+{
+    margin-left: 2px;
 }

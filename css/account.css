@@ -85,9 +85,50 @@
     background: white;
     border-radius: 5px;
     text-align: center;
+    max-height: 500px;
+    overflow-y: scroll;
 }
 
-#account_recette h2
+#account_recette_create a
 {
-    margin:auto;
+    color: black;
+    text-decoration: none;
+}
+
+#account_recette_container_1
+{
+    border: 1px solid black;
+    border-radius: 7px;
+    display: flex;
+    flex-direction:column;
+    padding: 5px;
+    margin:20px auto auto auto;
+    height: 250px;
+    width: 325px;
+    justify-content:space-between;
+}
+
+#account_recette_container_2
+{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+
+}
+
+#account_recette_container_1 p
+{
+    text-align:justify;
+}
+
+#account_recette_link
+{
+    text-decoration: none;
+    color: black;
+}
+
+#account_recette_container_1 img
+{
+    width:30px;
+    height: auto;
 }

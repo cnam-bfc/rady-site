@@ -4,6 +4,18 @@
 if (!isset($_SESSION['USER_LOGGED'])) {
     include_once('includes/redirect_backward.php');
 }
+
+try {
+    $sqlQuery = 'SELECT * FROM Recettes WHERE idAuteur = :idAuteur';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'idAuteur' => $_SESSION['USER_ID']
+    ]);
+    $recettes = $sqlStatement->fetchAll();
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include_once('includes/error.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +37,7 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 
             <div id="account_container">
 
-                <h2>Informations</h2>
+                <h2>Mes informations</h2>
 
                 <div id="account_info">
                     <div id="account_info2">
@@ -53,8 +65,53 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 
                 <h2>Mes recettes</h2>
 
-                <p><a>NOM RECETTE</a><p>
+                <?php if (count($recettes) == 0) : ?>
+                    <p>Vous n'avez créer aucune recette</p>
+                <?php endif; ?>
 
+                <h3 id="account_recette_create"><a href="recette_create.php" />Créer une recette</h3>
+
+                <?php foreach ($recettes as $recette) : ?>
+                    <?php
+                    // On récupère le nombre de like de la recette en bdd
+                    try {
+                        $sqlQuery = 'SELECT aime FROM LikesRecettes WHERE idRecette = :idRecette';
+                        $sqlStatement = $mysqlClient->prepare($sqlQuery);
+                        $sqlStatement->execute([
+                            'idRecette' => $recette['id']
+                        ]);
+                        $likes = $sqlStatement->fetchAll();
+
+                        $nbLike = 0;
+                        $nbDislike = 0;
+                        foreach ($likes as $like) {
+                            if ($like['aime'] == 1) {
+                                $nbLike++;
+                            } else {
+                                $nbDislike++;
+                            }
+                        }
+                    } catch (Exception $e) {
+                        $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+                        include_once('includes/error.php');
+                    }
+                    ?>
+                    <a href="recette.php?id=<?php echo ($recette['id']); ?>" id="account_recette_link">
+                        <div id="account_recette_container_1">
+
+                            <h3><?php echo ($recette['nom']); ?></h3>
+
+                            <p><?php echo ($recette['description']); ?></p>
+
+                            <div id="account_recette_container_2">
+
+                                <img src="img/eye<?php if (!$recette['visible']) echo ("_selected"); ?>.png" alt="visibilité de la recette" />
+
+                                <em><?php echo (($nbLike - $nbDislike) . ' Like'); ?></em>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
             </div>
 
         </div>

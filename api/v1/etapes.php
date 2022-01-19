@@ -1,5 +1,5 @@
 <?php
-include_once('init.php');
+include_once('includes/init.php');
 
 if (
     !isset($_GET['id'])
@@ -10,6 +10,17 @@ if (
 }
 
 $idRecette = $_GET['id'];
+
+$sqlQuery = 'SELECT * FROM Recettes WHERE visible = 1 AND id = :id';
+$sqlStatement = $mysqlClient->prepare($sqlQuery);
+$sqlStatement->execute([
+    'id' => $idRecette
+]);
+$recettes = $sqlStatement->fetchAll();
+if (count($recettes) == 0) {
+    echo ("ERREUR: Recette avec l'id " . $idRecette . " introuvable");
+    die();
+}
 
 try {
     $sqlQuery = 'SELECT * FROM Etapes WHERE idRecette = :idRecette';

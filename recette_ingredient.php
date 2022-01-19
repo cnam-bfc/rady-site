@@ -116,8 +116,6 @@ try {
                             <input type="number" min="0" required placeholder="Quantité" name="quantite" <?php if ($edit) echo ('value="' . $ingredientRecette['quantite'] . '"'); ?>>
 
                             <select name="unite" id="recette_ingredient_unite" required>
-                                <!-- Obligatoire pour que l'utilisateur soit obligé de choisir une unité dans la liste -->
-                                <option value=""></option>
                                 <?php foreach ($unites as $unite) : ?>
                                     <option value="<?php echo ($unite['nom']); ?>" <?php if ($edit && $ingredientRecette['unite'] == $unite['nom']) echo ('selected="selected"'); ?>><?php echo ($unite['nom']); ?></option>
                                 <?php endforeach; ?>
