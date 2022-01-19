@@ -88,18 +88,14 @@ try {
         <header><?php include_once('includes/header.php'); ?></header>
 
         <div id="recette_main">
-            <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
-                <!-- Visibilité de la page -->
-                <form action="submit_recette_visibility.php" method="POST" id="recette_public">
-                    <input type="hidden" name="id" value="<?php echo ($recette['id']); ?>" />
-                    <input type="hidden" name="visibility" value="<?php if ($recette['visible'] == 0) echo ("true");
-                                                                    elseif ($recette['visible'] == 1) echo ("false"); ?>" />
-                    <input Type="image" src="img/eye<?php if ($recette['visible']) echo ("_selected"); ?>.png" alt="page privée / public" />
-                </form>
-            <?php endif; ?>
 
             <!-- Nom de la recette -->
             <div id="recette_title">
+
+                <form action="à toi de jouer big thor" method="POST" class="del_buttom">
+                    <input type="image" src="img/corbeille.png" alt="supprimer la recette" />
+                </form>
+
                 <h1><?php echo htmlspecialchars($recette['nom']); ?></h1>
 
                 <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
@@ -109,6 +105,17 @@ try {
                         <input type="image" src="img/edit.png" alt="éditer le titre" />
                     </form>
                 <?php endif; ?>
+
+                <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                    <!-- Visibilité de la page -->
+                    <form action="submit_recette_visibility.php" method="POST" id="recette_public">
+                        <input type="hidden" name="id" value="<?php echo ($recette['id']); ?>" />
+                        <input type="hidden" name="visibility" value="<?php if ($recette['visible'] == 0) echo ("true");
+                                                                        elseif ($recette['visible'] == 1) echo ("false"); ?>" />
+                        <input Type="image" src="img/eye<?php if ($recette['visible']) echo ("_selected"); ?>.png" alt="page privée / public" />
+                    </form>
+                <?php endif; ?>
+
             </div>
 
             <!-- Description de la recette -->

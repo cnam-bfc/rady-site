@@ -90,37 +90,40 @@ try {
                         <textarea rows="4" cols="75" required placeholder="Ecrivez ici une courte description de la recette..." name="description" id="create_recette_desc" maxlength="1024"><?php if ($edit) echo ($recette['description']); ?></textarea>
                     </div>
 
-                    <div id="create_recette_information_supp">
+                    <?php if ($edit) : ?>
+                        <div id="create_recette_information_supp">
 
-                        <h2>Informations supplémentaires</h2>
+                            <h2>Informations supplémentaires</h2>
 
-                        <h3>Image de la recette (facultatif)</h3>
-                        <input type="url" placeholder="URL de l'image" name="imageUrl" <?php if ($edit && isset($recette['imageUrl'])) echo ('value="' . $recette['imageUrl'] . '"'); ?>>
+                            <h3>Image de la recette (facultatif)</h3>
+                            <input type="url" placeholder="URL de l'image" name="imageUrl" <?php if ($edit && isset($recette['imageUrl'])) echo ('value="' . $recette['imageUrl'] . '"'); ?>>
 
-                        <h3>Difficulté de la recette</h3>
-                        <select name="difficulte" id="recette_create_difficulte">
-                            <option value="Facile" <?php if ($edit && $recette['difficulte'] == "Facile") echo ('selected="selected"'); ?>>Facile</option>
-                            <option value="Moyenne" <?php if ($edit && $recette['difficulte'] == "Moyenne") echo ('selected="selected"'); ?>>Moyenne</option>
-                            <option value="Difficile" <?php if ($edit && $recette['difficulte'] == "Difficile") echo ('selected="selected"'); ?>>Difficile</option>
-                        </select>
-
-
-                        <h3>Temps de préparation (en minutes)</h3>
-                        <input type="number" min="0" placeholder="Temps en minutes" name="tempsPreparation" <?php if ($edit && isset($recette['tempsPreparation'])) echo ('value="' . $recette['tempsPreparation'] . '"'); ?>>
-
-                        <h3>Temps de conservation (en mois)</h3>
-                        <input type="number" min="0" placeholder="Temps en mois" name="tempsConservation" <?php if ($edit && isset($recette['tempsConservation'])) echo ('value="' . $recette['tempsConservation'] . '"'); ?>>
-
-                        <h3>Quantité de produit fini</h3>
-                        <div id="recette_create_finish_container">
-                            <input type="number" min="0" placeholder="Quantité" name="quantite" <?php if ($edit) echo ('value="' . $recette['quantite'] . '"'); ?>>
-                            <select name="unite" id="recette_create_difficulte">
-                                <?php foreach ($unites as $unite) : ?>
-                                    <option value="<?php echo ($unite['nom']); ?>" <?php if ($edit && $recette['unite'] == $unite['nom']) echo ('selected="selected"'); ?>><?php echo ($unite['nom']); ?></option>
-                                <?php endforeach; ?>
+                            <h3>Difficulté de la recette</h3>
+                            <select name="difficulte" id="recette_create_difficulte">
+                                <option value="">Non défini</option>
+                                <option value="Facile" <?php if ($edit && $recette['difficulte'] == "Facile") echo ('selected="selected"'); ?>>Facile</option>
+                                <option value="Moyenne" <?php if ($edit && $recette['difficulte'] == "Moyenne") echo ('selected="selected"'); ?>>Moyenne</option>
+                                <option value="Difficile" <?php if ($edit && $recette['difficulte'] == "Difficile") echo ('selected="selected"'); ?>>Difficile</option>
                             </select>
+
+
+                            <h3>Temps de préparation (en minutes)</h3>
+                            <input type="number" min="0" placeholder="Temps en minutes" name="tempsPreparation" <?php if ($edit && isset($recette['tempsPreparation'])) echo ('value="' . $recette['tempsPreparation'] . '"'); ?>>
+
+                            <h3>Temps de conservation (en mois)</h3>
+                            <input type="number" min="0" placeholder="Temps en mois" name="tempsConservation" <?php if ($edit && isset($recette['tempsConservation'])) echo ('value="' . $recette['tempsConservation'] . '"'); ?>>
+
+                            <h3>Quantité de produit fini</h3>
+                            <div id="recette_create_finish_container">
+                                <input type="number" min="0" placeholder="Quantité" name="quantite" <?php if ($edit) echo ('value="' . $recette['quantite'] . '"'); ?>>
+                                <select name="unite" id="recette_create_difficulte">
+                                    <?php foreach ($unites as $unite) : ?>
+                                        <option value="<?php echo ($unite['nom']); ?>" <?php if ($edit && $recette['unite'] == $unite['nom']) echo ('selected="selected"'); ?>><?php echo ($unite['nom']); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
 
                     <div id="create_recette_final_buttom">
                         <input type="submit" value="<?php if ($edit) echo ("Modifier");

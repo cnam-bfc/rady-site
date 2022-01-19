@@ -45,6 +45,21 @@ try {
     include_once('includes/error.php');
 }
 
+if ($id != $new_id) {
+    // On supprime une étape si elle existe vers le nouveau id en base de données
+    try {
+        $sqlQuery = 'DELETE FROM Etapes WHERE idRecette = :idRecette AND id = :id';
+        $sqlStatement = $mysqlClient->prepare($sqlQuery);
+        $sqlStatement->execute([
+            'idRecette' => $recette,
+            'id' => $new_id
+        ]);
+    } catch (Exception $e) {
+        $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+        include_once('includes/error.php');
+    }
+}
+
 // On modifie l'étape en base de données
 try {
     $sqlQuery = 'UPDATE Etapes SET id = :new_id, description = :new_description, idAnimation = :new_id_animation WHERE idRecette = :idRecette AND id = :id';

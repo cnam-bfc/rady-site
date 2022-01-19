@@ -23,7 +23,7 @@
 
 /* allignement de tout sauf note et like*/
 
-#recette_desc,#recette_img, #recette_ingrediants, #recette_etapes,#recette_public {
+#recette_desc,#recette_img, #recette_ingrediants, #recette_etapes {
     margin: auto;
 }
 
@@ -43,6 +43,7 @@
     text-shadow: 1px 1px 1px black;
     border-bottom: 2px solid grey;
     margin-right:10px;
+    margin-left:10px;
 }
 
 #recette_title input

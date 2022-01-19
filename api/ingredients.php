@@ -21,7 +21,7 @@ try {
     ]);
     $ingredients = $sqlStatement->fetchAll();
     if (count($ingredients) == 0) {
-        echo ("ERREUR: Ingrédients de la recette avec l'id " . $id . " introuvable");
+        echo ("ERREUR: Ingrédients de la recette avec l'id " . $idRecette . " introuvable");
         die();
     }
 } catch (Exception $e) {
@@ -29,15 +29,15 @@ try {
     die();
 }
 
-$nbIngredients = count($ingredients);
+$nb = count($ingredients);
 foreach ($ingredients as $ingredient) {
-    $nbIngredients--;
+    $nb--;
     echo ('ingredient_' . $ingredient['idIngredient'] . $separator);
     echo (displayKeyValue($ingredient, 'idIngredient', $separator, true));
     echo (displayKeyValue($ingredient, 'nom', $separator, true));
     echo (displayKeyValue($ingredient, 'imageUrl', $separator, true));
     echo (displayKeyValue($ingredient, 'quantite', $separator, true));
-    if ($nbIngredients != 0)
+    if ($nb != 0)
         echo (displayKeyValue($ingredient, 'unite', $separator, true));
     else
         echo (displayKeyValue($ingredient, 'unite', $separator, false));

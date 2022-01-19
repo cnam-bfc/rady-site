@@ -19,7 +19,7 @@ try {
     ]);
     $etapes = $sqlStatement->fetchAll();
     if (count($etapes) == 0) {
-        echo ("ERREUR: Etapes de la recette avec l'id " . $id . " introuvable");
+        echo ("ERREUR: Etapes de la recette avec l'id " . $idRecette . " introuvable");
         die();
     }
 } catch (Exception $e) {
