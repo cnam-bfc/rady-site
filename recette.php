@@ -72,6 +72,19 @@ try {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
     include_once('includes/error.php');
 }
+
+// On récupère les ustensiles de la recette
+try {
+    $sqlQuery = 'SELECT * FROM Ustensiles, UstensilesRecettes WHERE UstensilesRecettes.idRecette = :idRecette AND UstensilesRecettes.idUstensile = Ustensiles.id ORDER BY Ustensiles.nom';
+    $sqlStatement = $mysqlClient->prepare($sqlQuery);
+    $sqlStatement->execute([
+        'idRecette' => $recette['id']
+    ]);
+    $ustensiles = $sqlStatement->fetchAll();
+} catch (Exception $e) {
+    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+    include_once('includes/error.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -295,6 +308,46 @@ try {
                     </div>
                 <?php endif; ?>
 
+            </div>
+
+            <!-- Ustensiles de la recette -->
+            <div id="recette_ustensiles">
+
+                <h2>Ustensiles</h2>
+
+                <?php foreach ($ustensiles as $ustensile) : ?>
+                    <div class="recette_ingredient_etape_container">
+
+                        <div class="recette_ingredient_etape_container_desc">
+                            <p><em>- </em><?php echo ('<strong>' . htmlspecialchars($ustensile['nom']) . '</strong>: ' . htmlspecialchars($ustensile['quantite']) . ' ' . htmlspecialchars($ustensile['unite'])); ?></p>
+                        </div>
+
+                        <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                            <div class="recette_ingredient_etape_container_buttom">
+                                <form action="recette_ustensile.php" method="POST">
+                                    <input type="hidden" name="edit" value="true" />
+                                    <input type="hidden" name="recette" value="<?php echo ($ustensile['idRecette']); ?>" />
+                                    <input type="hidden" name="ustensile" value="<?php echo ($ustensile['idUstensile']); ?>" />
+                                    <input type="image" alt="bouton éditer ustensile" src="img/edit.png" />
+                                </form>
+                                <form action="submit_recette_ustensile_delete.php" method="POST">
+                                    <input type="hidden" name="recette" value="<?php echo ($ustensile['idRecette']); ?>" />
+                                    <input type="hidden" name="ustensile" value="<?php echo ($ustensile['idUstensile']); ?>" />
+                                    <input type="image" alt="bouton supprimer ustensile" src="img/corbeille.png" />
+                                </form>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+
+                <?php if (isset($_SESSION['USER_LOGGED']) && $recette['idAuteur'] == $_SESSION['USER_ID']) : ?>
+                    <div class="recette_add">
+                        <form action="recette_ustensile.php" method="POST">
+                            <input type="hidden" name="recette" value="<?php echo ($recette['id']); ?>" />
+                            <input type="image" alt="bouton ajout ustensile" src="img/add.png" />
+                        </form>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <!-- Étapes de la recette -->

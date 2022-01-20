@@ -38,6 +38,7 @@ if (isset($_SESSION['USER_LOGGED'])) {
 
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" required placeholder="Mot de passe" />
+                <input type="password" name="password_comfirm" required placeholder="Confirmer mot de passe" />
 
                 <div id="auth_button_div">
                     <input type="submit" value="S'inscrire" id="auth_buttom" /></br>

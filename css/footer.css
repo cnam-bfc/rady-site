@@ -7,7 +7,19 @@
     border-top: 2px outset grey ;
 }
 
-#footer_text
+#footer_text_1
 {
     margin-left: 10px;
+
+}
+
+#footer_text_2
+{
+    margin-right: 10px;
+    color: black;
+}
+
+#footer_main_div a
+{
+    text-decoration: none;
 }

@@ -6,7 +6,7 @@ if (!isset($_SESSION['USER_LOGGED'])) {
 }
 
 try {
-    $sqlQuery = 'SELECT * FROM Recettes WHERE idAuteur = :idAuteur';
+    $sqlQuery = 'SELECT * FROM RecettesLikes WHERE idAuteur = :idAuteur ORDER BY aime DESC';
     $sqlStatement = $mysqlClient->prepare($sqlQuery);
     $sqlStatement->execute([
         'idAuteur' => $_SESSION['USER_ID']
@@ -72,30 +72,6 @@ try {
                 <h3 id="account_recette_create"><a href="recette_create.php" />Créer une recette</h3>
 
                 <?php foreach ($recettes as $recette) : ?>
-                    <?php
-                    // On récupère le nombre de like de la recette en bdd
-                    try {
-                        $sqlQuery = 'SELECT aime FROM LikesRecettes WHERE idRecette = :idRecette';
-                        $sqlStatement = $mysqlClient->prepare($sqlQuery);
-                        $sqlStatement->execute([
-                            'idRecette' => $recette['id']
-                        ]);
-                        $likes = $sqlStatement->fetchAll();
-
-                        $nbLike = 0;
-                        $nbDislike = 0;
-                        foreach ($likes as $like) {
-                            if ($like['aime'] == 1) {
-                                $nbLike++;
-                            } else {
-                                $nbDislike++;
-                            }
-                        }
-                    } catch (Exception $e) {
-                        $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                        include_once('includes/error.php');
-                    }
-                    ?>
                     <a href="recette.php?id=<?php echo ($recette['id']); ?>" id="account_recette_link">
                         <div id="account_recette_container_1">
 
@@ -107,7 +83,7 @@ try {
 
                                 <img src="img/eye<?php if (!$recette['visible']) echo ("_selected"); ?>.png" alt="visibilité de la recette" />
 
-                                <em><?php echo (($nbLike - $nbDislike) . ' Like'); ?></em>
+                                <em><?php echo ($recette['aime'] . ' Like'); ?></em>
                             </div>
                         </div>
                     </a>

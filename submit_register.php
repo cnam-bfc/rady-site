@@ -19,6 +19,8 @@ if (
     || empty($_POST['prenom'])
     || !isset($_POST['password'])
     || empty($_POST['password'])
+    || !isset($_POST['password_comfirm'])
+    || empty($_POST['password_comfirm'])
 ) {
     $_SESSION['ERROR_MSG'] = 'Informations fournies non valides !';
     include_once('includes/error.php');
@@ -29,6 +31,12 @@ $pseudo = htmlspecialchars($_POST['pseudo']);
 $nom = htmlspecialchars($_POST['nom']);
 $prenom = htmlspecialchars($_POST['prenom']);
 $password = htmlspecialchars($_POST['password']);
+$password_comfirm = htmlspecialchars($_POST['password_comfirm']);
+
+if ($password != $password_comfirm) {
+    $_SESSION['ERROR_MSG'] = 'Les deux mot de passe ne sont pas identique';
+    include_once('includes/error.php');
+}
 
 // On vérifie si il existe déjà un utilisateur avec ce pseudo
 try {

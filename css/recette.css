@@ -31,7 +31,7 @@
 
 /* allignement de tout sauf note et like*/
 
-#recette_desc,#recette_img, #recette_ingrediants, #recette_etapes {
+#recette_desc,#recette_img, #recette_ingrediants, #recette_etapes, #recette_ustensiles {
     margin: auto;
 }
 
@@ -202,7 +202,7 @@ sans centrer donc j'ai cherché pour rien*/
     text-align: center;
 }*/
 
-#recette_ingrediants, #recette_etapes
+#recette_ingrediants, #recette_etapes, #recette_ustensiles
 {
     border: 2px solid black;
     width: 600px;
@@ -214,12 +214,12 @@ sans centrer donc j'ai cherché pour rien*/
     text-align: justify;
 }
 
-#recette_ingrediants
+#recette_ingrediants, #recette_ustensiles
 {
     width: 400px !important;
 }
 
-#recette_ingrediants h2, #recette_etapes h2{
+#recette_ingrediants h2, #recette_etapes h2, #recette_ustensiles h2{
     margin-bottom: 20px;
     text-align: center;
 }

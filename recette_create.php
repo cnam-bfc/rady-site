@@ -118,7 +118,8 @@ try {
                                 <input type="number" min="0" placeholder="Quantité" name="quantite" <?php if ($edit) echo ('value="' . $recette['quantite'] . '"'); ?>>
                                 <select name="unite" id="recette_create_difficulte">
                                     <?php foreach ($unites as $unite) : ?>
-                                        <option value="<?php echo ($unite['nom']); ?>" <?php if ($edit && $recette['unite'] == $unite['nom']) echo ('selected="selected"'); ?>><?php echo ($unite['nom']); ?></option>
+                                        <option value="<?php echo ($unite['nom']); ?>" <?php if ($edit && $recette['unite'] == $unite['nom']) echo ('selected="selected"'); ?>><?php if ($unite['nom'] == ' ') echo ('Aucune unité');
+                                                                                                                                                                                else echo ($unite['nom']); ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

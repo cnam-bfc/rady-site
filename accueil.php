@@ -2,11 +2,13 @@
 
 <?php
 try {
+    /*  Requète si on utilise le fait du nombre d'utilisateurs qui a fait une recette la semaine qui vient de s'écouler
     $sqlQuery = 'SELECT Recettes.id, Recettes.nom, Recettes.description, Recettes.visible, Recettes.idAuteur, COUNT(*) as popularity
     FROM Recettes, RecettesUtilisateurs
     WHERE Recettes.visible = 1 AND Recettes.id = RecettesUtilisateurs.idRecette AND (RecettesUtilisateurs.date between date_sub(now(),INTERVAL 1 WEEK) and now())
     GROUP BY id
-    ORDER BY popularity DESC';
+    ORDER BY popularity DESC'; */
+    $sqlQuery = 'SELECT * FROM RecettesLikes WHERE visible = 1 ORDER BY aime DESC LIMIT 3';
     $sqlStatement = $mysqlClient->prepare($sqlQuery);
     $sqlStatement->execute();
     $recettes = $sqlStatement->fetchAll();
@@ -44,26 +46,26 @@ try {
 
                 <div id="accueil_border_actu">
                     <h2>Le projet</h2>
-                    <p>Rady est une solution pour aider les personnes qui souhaitent créer leurs produits ménagers eux-mêmes, 
-                        en utilisant des ingrédients simples et naturels. Ce site permet à la communauté de noter les recettes, 
-                        d’échanger leurs avis ou encore d’ajouter leur meilleure recette inratable et efficace. 
-                        L’application de réalité virtuelle, proposée sur le casque HoloLens, vous permettra de suivre les recettes de 
-                        manière ergonomique et surtout avec les mains libres ! Les animations et le guide des étapes vous aideront à réussir 
+                    <p>Rady est une solution pour aider les personnes qui souhaitent créer leurs produits ménagers eux-mêmes,
+                        en utilisant des ingrédients simples et naturels. Ce site permet à la communauté de noter les recettes,
+                        d’échanger leurs avis ou encore d’ajouter leur meilleure recette inratable et efficace.
+                        L’application de réalité virtuelle, proposée sur le casque HoloLens, vous permettra de suivre les recettes de
+                        manière ergonomique et surtout avec les mains libres ! Les animations et le guide des étapes vous aideront à réussir
                         vos recettes du premier coup.</p>
 
                     <h2 class="accueil_title_h2">Eco-responsabilité</h2>
                     <p>Rady vous aide à diminuer vos déchets et votre impact environnemental. </br> </p>
-                    <p>L’éco responsabilité désigne l’ensemble des actions visant à limiter les impacts sur 
-                        l’environnement de l’activité quotidienne des collectivités. L’éco responsabilité passe 
+                    <p>L’éco responsabilité désigne l’ensemble des actions visant à limiter les impacts sur
+                        l’environnement de l’activité quotidienne des collectivités. L’éco responsabilité passe
                         par de nouveaux choix de gestion, d’achats, d’organisation du travail, des investissements et par la sensibilisation.</p>
 
                     <h2 class="accueil_title_h2">Qui sommes nous</h2>
-                    <p>Nous sommes un groupe de 8 étudiants, motivés par l’utilisation des nouvelles technologies pour encourager les changements 
-                        d’habitude. Nous avons développé ce projet pour le défi Chal’enge, porté par nos écoles : l’Institut Image Arts et Métiers, 
-                        l’IUT de Chalon-sur-Saône et le CNAM.  </p>
-                    <p>Lucas et Alexandra ont travaillés sur les modélisations 3D et les animations, Stanislas et Jérémie ont créés la charte graphique, 
-                        les logos et la vidéo, Alban et Victor ont développé le site internet et la base de donnée, Jennifer et Eloïse ont développé l’application HoloLens 
-                        et gérer le projet.</p> 
+                    <p>Nous sommes un groupe de 8 étudiants, motivés par l’utilisation des nouvelles technologies pour encourager les changements
+                        d’habitude. Nous avons développé ce projet pour le défi Chal’enge, porté par nos écoles : l’Institut Image Arts et Métiers,
+                        l’IUT de Chalon-sur-Saône et le CNAM. </p>
+                    <p>Lucas et Alexandra ont travaillés sur les modélisations 3D et les animations, Stanislas et Jérémie ont créés la charte graphique,
+                        les logos et la vidéo, Alban et Victor ont développé le site internet et la base de donnée, Jennifer et Eloïse ont développé l’application HoloLens
+                        et gérer le projet.</p>
                 </div>
 
             </div>
@@ -80,33 +82,8 @@ try {
                 </div>
 
                 <div id="top_recettes_border">
-                    <?php $nbRecettes = 0; ?>
                     <?php foreach ($recettes as $recette) : ?>
-                        <?php if ($nbRecettes >= 3) break; ?>
-                        <?php $nbRecettes++;
-                        // On récupère le nombre de like de la recette en bdd
-                        try {
-                            $sqlQuery = 'SELECT aime FROM LikesRecettes WHERE idRecette = :idRecette';
-                            $sqlStatement = $mysqlClient->prepare($sqlQuery);
-                            $sqlStatement->execute([
-                                'idRecette' => $recette['id']
-                            ]);
-                            $likes = $sqlStatement->fetchAll();
-
-                            $nbLike = 0;
-                            $nbDislike = 0;
-                            foreach ($likes as $like) {
-                                if ($like['aime'] == 1) {
-                                    $nbLike++;
-                                } else {
-                                    $nbDislike++;
-                                }
-                            }
-                        } catch (Exception $e) {
-                            $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                            include_once('includes/error.php');
-                        }
-
+                        <?php
                         // Si la recette a un auteur
                         if (isset($recette['idAuteur'])) {
                             // On récupère l'auteur de la recette
@@ -136,7 +113,7 @@ try {
                                     <?php if (isset($recette['idAuteur'])) : ?>
                                         <strong><?php echo ($utilisateur['pseudo']); ?></strong>
                                     <?php endif; ?>
-                                    <em><?php echo (($nbLike - $nbDislike) . ' Like'); ?></em>
+                                    <em><?php echo ($recette['aime'] . ' Like'); ?></em>
                                 </div>
 
                             </div>

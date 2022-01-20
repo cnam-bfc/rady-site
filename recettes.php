@@ -69,31 +69,7 @@ try {
                             </div>
 
                             <div class="recettes_note_auteur">
-                                <?php
-                                // On récupère le nombre de like de la recette en bdd
-                                try {
-                                    $sqlQuery = 'SELECT aime FROM LikesRecettes WHERE idRecette = :idRecette';
-                                    $sqlStatement = $mysqlClient->prepare($sqlQuery);
-                                    $sqlStatement->execute([
-                                        'idRecette' => $recette['id']
-                                    ]);
-                                    $likes = $sqlStatement->fetchAll();
-
-                                    $nbLike = 0;
-                                    $nbDislike = 0;
-                                    foreach ($likes as $like) {
-                                        if ($like['aime'] == 1) {
-                                            $nbLike++;
-                                        } else {
-                                            $nbDislike++;
-                                        }
-                                    }
-                                } catch (Exception $e) {
-                                    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                                    include_once('includes/error.php');
-                                }
-                                ?>
-                                <p><?php echo (($nbLike - $nbDislike) . ' Like'); ?></p>
+                                <p><?php echo ($recette['aime'] . ' Like'); ?></p>
 
                                 <?php if (isset($recette['idAuteur'])) : ?>
                                     <?php

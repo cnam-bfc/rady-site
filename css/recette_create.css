@@ -73,3 +73,10 @@
 {
     margin-left: 2px;
 }
+
+#create_recette_information em
+{
+    font-weight: normal;
+    font-size: 14px;
+    font-style: italic;
+}

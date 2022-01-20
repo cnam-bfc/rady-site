@@ -20,29 +20,29 @@ if (isset($_POST['edit']) && !empty($_POST['edit'])) {
     $edit = $_POST['edit'];
 
     if (
-        !isset($_POST['ingredient'])
-        || empty($_POST['ingredient'])
+        !isset($_POST['ustensile'])
+        || empty($_POST['ustensile'])
     ) {
         $_SESSION['ERROR_MSG'] = 'Informations fournies non valides !';
         include_once('includes/error.php');
     }
 
-    $idIngredient = htmlspecialchars($_POST['ingredient']);
+    $idUstensile = htmlspecialchars($_POST['ustensile']);
 
     try {
-        $sqlQuery = 'SELECT * FROM IngredientsRecettes WHERE idRecette = :idRecette AND idIngredient = :idIngredient';
+        $sqlQuery = 'SELECT * FROM UstensilesRecettes WHERE idRecette = :idRecette AND idUstensile = :idUstensile';
         $sqlStatement = $mysqlClient->prepare($sqlQuery);
         $sqlStatement->execute([
             'idRecette' => $idRecette,
-            'idIngredient' => $idIngredient
+            'idUstensile' => $idUstensile
         ]);
-        $ingredientsRecettes = $sqlStatement->fetchAll();
-        if (count($ingredientsRecettes) == 0) {
-            $_SESSION['ERROR_MSG'] = 'Ingrédient introuvable';
+        $ustensilesRecettes = $sqlStatement->fetchAll();
+        if (count($ustensilesRecettes) == 0) {
+            $_SESSION['ERROR_MSG'] = 'Ustensile introuvable';
             include_once('includes/error.php');
         }
 
-        foreach ($ingredientsRecettes as $ingredientRecette) {
+        foreach ($ustensilesRecettes as $ustensileRecette) {
         }
     } catch (Exception $e) {
         $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
@@ -61,10 +61,10 @@ try {
 }
 
 try {
-    $sqlQuery = 'SELECT * FROM Ingredients ORDER BY nom ASC';
+    $sqlQuery = 'SELECT * FROM Ustensiles ORDER BY nom ASC';
     $sqlStatement = $mysqlClient->prepare($sqlQuery);
     $sqlStatement->execute();
-    $ingredients = $sqlStatement->fetchAll();
+    $ustensiles = $sqlStatement->fetchAll();
 } catch (Exception $e) {
     $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
     include_once('includes/error.php');
@@ -76,7 +76,7 @@ try {
 <head>
     <?php include_once('includes/head.php'); ?>
     <title><?php if ($edit) echo ("Modifier");
-            else echo ("Ajouter"); ?> un ingrédient</title>
+            else echo ("Ajouter"); ?> un ustensile</title>
     <link rel="stylesheet" href="css/recette_create.css" />
 </head>
 
@@ -87,38 +87,38 @@ try {
         <div id="create_recette_main">
 
             <h1><?php if ($edit) echo ("Modifier");
-                else echo ("Ajouter"); ?> un ingrédient</h1>
+                else echo ("Ajouter"); ?> un ustensile</h1>
 
             <div id="create_recette_main_container">
 
-                <form action="submit_recette_ingredient_<?php if ($edit) echo ("edit");
+                <form action="submit_recette_ustensile_<?php if ($edit) echo ("edit");
                                                         else echo ("add"); ?>.php" method="POST" id="create_recette_form">
                     <input type="hidden" name="recette" value="<?php echo ($idRecette); ?>">
                     <?php if ($edit) : ?>
-                        <input type="hidden" name="ingredient" value="<?php echo ($idIngredient); ?>">
+                        <input type="hidden" name="ustensile" value="<?php echo ($idUstensile); ?>">
                     <?php endif; ?>
 
                     <div id="create_recette_information">
 
-                        <h2>Détails de l'ingrédient</h2>
+                        <h2>Détails de l'ustensile</h2>
 
-                        <h3>Ingredient</h3>
-                        <select name="ingredient" id="recette_ingredient_unite" required <?php if ($edit) echo ("disabled"); ?>>
-                            <!-- Obligatoire pour que l'utilisateur soit obligé de choisir un ingrédient dans la liste -->
+                        <h3>Ustensile</h3>
+                        <select name="ustensile" id="recette_ingredient_unite" required <?php if ($edit) echo ("disabled"); ?>>
+                            <!-- Obligatoire pour que l'utilisateur soit obligé de choisir un ustensile dans la liste -->
                             <option value=""></option>
-                            <?php foreach ($ingredients as $ingredient) : ?>
-                                <option value="<?php echo ($ingredient['id']); ?>" <?php if ($edit && $ingredientRecette['idIngredient'] == $ingredient['id']) echo ('selected="selected"'); ?>><?php echo ($ingredient['nom']); ?></option>
+                            <?php foreach ($ustensiles as $ustensile) : ?>
+                                <option value="<?php echo ($ustensile['id']); ?>" <?php if ($edit && $ustensileRecette['idUstensile'] == $ustensile['id']) echo ('selected="selected"'); ?>><?php echo ($ustensile['nom']); ?></option>
                             <?php endforeach; ?>
                         </select>
 
-                        <h3>Quantité</h3>
+                        <h3>Quantité <em>(unité facultatif)</em></h3>
                         <div id="recette_ingredient_quantite">
-                            <input type="number" min="0" required placeholder="Quantité" name="quantite" <?php if ($edit) echo ('value="' . $ingredientRecette['quantite'] . '"'); ?>>
+                            <input type="number" min="0" required placeholder="Quantité" name="quantite" <?php if ($edit) echo ('value="' . $ustensileRecette['quantite'] . '"'); ?>>
 
                             <select name="unite" id="recette_ingredient_unite" required>
                                 <?php foreach ($unites as $unite) : ?>
-                                    <option value="<?php echo ($unite['nom']); ?>" <?php if ($edit && $ingredientRecette['unite'] == $unite['nom']) echo ('selected="selected"'); ?>><?php if ($unite['nom'] == ' ') echo ('Aucune unité');
-                                                                                                                                                                                        else echo ($unite['nom']); ?></option>
+                                    <option value="<?php echo ($unite['nom']); ?>" <?php if ($edit && $ustensileRecette['unite'] == $unite['nom']) echo ('selected="selected"'); ?>><?php if ($unite['nom'] == ' ') echo ('Aucune unité');
+                                                                                                                                                                                    else echo ($unite['nom']); ?></option>
                                 <?php endforeach; ?>
                             </select>
 
@@ -128,7 +128,7 @@ try {
 
                     <div id="create_recette_final_buttom">
                         <input type="submit" value="<?php if ($edit) echo ("Modifier");
-                                                    else echo ("Ajouter"); ?> l'ingrédient">
+                                                    else echo ("Ajouter"); ?> l'ustensile">
                     </div>
 
                 </form>
