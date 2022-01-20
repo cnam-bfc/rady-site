@@ -17,7 +17,7 @@ function displayKeyValue(array $array, string $key, string $separator, bool $end
         else
             return ($key . $separator . $array[$key]);
     elseif ($endSeparator)
-        return ($key . $separator . 'NULL' . $separator);
+        return ($key . $separator . 'Indéterminé' . $separator);
     else
-        return ($key . $separator . 'NULL');
+        return ($key . $separator . 'Indéterminé');
 }
