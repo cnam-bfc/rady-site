@@ -1,26 +1,24 @@
-body, ::before, ::after
-{
+body,
+::before,
+::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body
-{
+body {
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.main_div
-{
+.main_div {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
 }
 
-footer
-{
+footer {
     flex-shrink: 0;
     width: 100%;
 }

@@ -1,12 +1,9 @@
-
-.main_div
-{
-    background:rgb(207, 207, 205);
+.main_div {
+    background: rgb(207, 207, 205);
 }
 
 
-#create_recette_main
-{
+#create_recette_main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,23 +14,20 @@
     background: white;
 }
 
-#create_recette_main_container
-{
+#create_recette_main_container {
     margin: auto;
     padding: 5px 10px 7px 10px;
-    border : 1px dashed black;
+    border: 1px dashed black;
     border-radius: 7px;
 }
 
-#create_recette_main_container h2
-{
+#create_recette_main_container h2 {
     border-bottom: 1px dashed black;
     text-align: center;
     font-weight: bold;
 }
 
-#create_recette_final_buttom
-{
+#create_recette_final_buttom {
     border-top: 1px dashed black;
     padding-top: 10px;
     padding-bottom: 2px;
@@ -41,41 +35,35 @@
     text-align: center;
 }
 
-#create_recette_main h1
-{
+#create_recette_main h1 {
     border-bottom: 1px solid grey;
     font-weight: bold;
     text-align: center;
 }
 
-#create_recette_information h2
-{
+#create_recette_information h2 {
     font-weight: bold;
     text-align: center;
 }
 
 /*Informations supplémentaires*/
 
-#create_recette_information_supp
-{
+#create_recette_information_supp {
     border-top: 1px dashed black;
     margin-top: 15px;
 }
 
-#recette_create_finish_container
-{
+#recette_create_finish_container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
-#recette_create_difficulte
-{
+#recette_create_difficulte {
     margin-left: 2px;
 }
 
-#create_recette_information em
-{
+#create_recette_information em {
     font-weight: normal;
     font-size: 14px;
     font-style: italic;

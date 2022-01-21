@@ -1,24 +1,20 @@
-.main_div
-{
-    background:rgb(207, 207, 205);
+.main_div {
+    background: rgb(207, 207, 205);
 }
 
-#account_main_div
-{
+#account_main_div {
     display: flex;
     flex-direction: column;
     margin: 30px 170px 0 170px;
     align-items: center;
-    margin:auto;
+    margin: auto;
 }
 
-#account_main_div h1
-{
+#account_main_div h1 {
     text-align: center;
 }
 
-#account_container
-{
+#account_container {
     border: 2px solid rgb(26, 25, 25);
     display: flex;
     flex-direction: column;
@@ -31,40 +27,34 @@
     border-radius: 5px;
 }
 
-#account_main_div h2
-{
+#account_main_div h2 {
     border-bottom: 1px solid grey;
     font-weight: bold;
 }
 
-#account_info
-{
+#account_info {
     display: flex;
     flex-direction: row;
 }
 
-#account_info2
-{
+#account_info2 {
     font-weight: bold;
     text-align: right;
-    flex:1;
+    flex: 1;
 }
 
-#account_info3
-{
+#account_info3 {
     text-align: left;
-    flex:1;
+    flex: 1;
 }
 
-#account_info p 
-{
+#account_info p {
     border-bottom: 1px dashed grey;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-#account_delete
-{
+#account_delete {
     text-align: right;
     margin-bottom: 5px;
     text-decoration: none;
@@ -74,8 +64,7 @@
 
 /*Mes recettes*/
 
-#account_recette
-{
+#account_recette {
     border: 2px solid rgb(26, 25, 25);
     display: flex;
     flex-direction: column;
@@ -89,46 +78,40 @@
     overflow-y: scroll;
 }
 
-#account_recette_create a
-{
+#account_recette_create a {
     color: black;
     text-decoration: none;
 }
 
-#account_recette_container_1
-{
+#account_recette_container_1 {
     border: 1px solid black;
     border-radius: 7px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     padding: 5px;
-    margin:20px auto auto auto;
+    margin: 20px auto auto auto;
     height: 250px;
     width: 325px;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
-#account_recette_container_2
-{
+#account_recette_container_2 {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: space-between;
 
 }
 
-#account_recette_container_1 p
-{
-    text-align:justify;
+#account_recette_container_1 p {
+    text-align: justify;
 }
 
-#account_recette_link
-{
+#account_recette_link {
     text-decoration: none;
     color: black;
 }
 
-#account_recette_container_1 img
-{
-    width:30px;
+#account_recette_container_1 img {
+    width: 30px;
     height: auto;
 }

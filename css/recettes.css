@@ -1,46 +1,39 @@
-.main_div
-{
-    background:rgb(207, 207, 205);
+.main_div {
+    background: rgb(207, 207, 205);
 }
 
 
-#recettes_main
-{
-    display:flex;
+#recettes_main {
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-left: 40px;
     margin-right: 40px;
 }
 
-#recettes_main h1
-{
+#recettes_main h1 {
     text-shadow: 1px 1px 1px black;
     text-align: center;
     margin-bottom: 30px;
 }
 
-.recettes_separator
-{
+.recettes_separator {
     height: 40px;
 }
 
-#recettes_main a
-{
+#recettes_main a {
     text-decoration: none;
     color: black;
 }
 
-#recettes_create
-{
+#recettes_create {
     text-align: right;
     font-weight: bold;
     font-size: large;
     margin-bottom: 10px;
 }
 
-.recettes_container
-{
+.recettes_container {
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -51,8 +44,7 @@
     color: #181818;
 }
 
-.recettes_nom
-{
+.recettes_nom {
     border-right: 3px solid rgb(63, 62, 62);
     box-shadow: 1px 1px 1px grey;
     min-height: 100px;
@@ -62,8 +54,7 @@
     display: flex;
 }
 
-.recettes_note_auteur
-{
+.recettes_note_auteur {
     border-left: 3px solid rgb(63, 62, 62);
     box-shadow: 1px 1px 1px grey;
     width: 150px;
@@ -74,20 +65,18 @@
     justify-content: space-around;
 }
 
-.recettes_note_auteur strong
-{
+.recettes_note_auteur strong {
     font-weight: bold;
 }
 
-.recettes_desc
-{
+.recettes_desc {
     box-shadow: 1px 1px 1px grey;
     flex: 1;
     text-indent: 10px;
     padding: 5px;
 }
 
-.recettes_nom p, .recettes_note p 
-{
-   margin: auto;
+.recettes_nom p,
+.recettes_note p {
+    margin: auto;
 }
