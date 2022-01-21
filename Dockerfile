@@ -10,18 +10,18 @@ RUN docker-php-ext-install pdo_mysql
 RUN a2enmod rewrite
 
 # Install git, zip and composer (optional)
-RUN apt update \
- && apt install -y git zip \
- && curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# RUN apt update \
+#  && apt install -y git zip \
+#  && curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install composer dependencies (optional)
-COPY composer.* ./
-RUN composer install \
-    --ignore-platform-reqs \
-    --no-interaction \
-    --no-plugins \
-    --no-scripts \
-    --prefer-dist
+# COPY composer.* ./
+# RUN composer install \
+#     --ignore-platform-reqs \
+#     --no-interaction \
+#     --no-plugins \
+#     --no-scripts \
+#     --prefer-dist
 
 # Add source code files to WORKDIR
 COPY . .
