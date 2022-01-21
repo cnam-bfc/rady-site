@@ -32,7 +32,7 @@ dev:
     - .git/
     uploadExcludePaths:
     - Dockerfile
-    - Dockerfile.dev
+    - dev.Dockerfile
     - .dockerignore
     - .gitattributes
     - .gitignore
