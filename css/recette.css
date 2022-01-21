@@ -255,6 +255,12 @@ sans centrer donc j'ai cherché pour rien*/
     margin: auto;
 }
 
+#recette_author {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 /*Espace commentaire, Bon pour le moment je l'intègre à la page mais il est
 fort probable que ça ne soit plus le cas à l'avenir */
 
@@ -264,7 +270,7 @@ fort probable que ça ne soit plus le cas à l'avenir */
 
 #recette_container_comment_main {
     max-height: 800px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #recette_container_comment {

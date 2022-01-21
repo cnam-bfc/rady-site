@@ -391,27 +391,30 @@ try {
                 <?php endif; ?>
             </div>
             <!-- Auteur de la recette -->
-            <?php if ($recette['idAuteur'] != null) : ?>
-                <?php
-                try {
-                    $sqlQuery = 'SELECT * FROM Utilisateurs WHERE id = :id';
-                    $sqlStatement = $mysqlClient->prepare($sqlQuery);
-                    $sqlStatement->execute([
-                        'id' => $recette['idAuteur']
-                    ]);
-                    $utilisateurs = $sqlStatement->fetchAll();
-                } catch (Exception $e) {
-                    $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
-                    include_once('includes/error.php');
-                }
+            <div id="recette_author">
+                <p>
+                    <?php if ($recette['idAuteur'] != null) : ?>
+                        <?php
+                        try {
+                            $sqlQuery = 'SELECT * FROM Utilisateurs WHERE id = :id';
+                            $sqlStatement = $mysqlClient->prepare($sqlQuery);
+                            $sqlStatement->execute([
+                                'id' => $recette['idAuteur']
+                            ]);
+                            $utilisateurs = $sqlStatement->fetchAll();
+                        } catch (Exception $e) {
+                            $_SESSION['ERROR_MSG'] = 'Erreur lors de l\'éxécution de la requête SQL:</br>' . $e->getMessage();
+                            include_once('includes/error.php');
+                        }
 
-                foreach ($utilisateurs as $utilisateur) {
-                }
-                ?>
-                <div id="recette_author">
-                    <p><?php echo 'Auteur: ' . htmlspecialchars($utilisateur['pseudo']); ?></p>
-                </div>
-            <?php endif; ?>
+                        foreach ($utilisateurs as $utilisateur) {
+                        }
+                        ?>
+                        <?php echo ('Auteur: ' . htmlspecialchars($utilisateur['pseudo'])); ?>
+                    <?php endif; ?>
+                </p>
+                <p><?php echo ('Numéro de recette : ' . ($recette['id'])); ?> </p>
+            </div>
 
             <!-- Commentaires -->
             <h1 id="recette_comment_title">Commentaires</h1>

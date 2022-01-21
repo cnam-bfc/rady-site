@@ -75,7 +75,7 @@
     border-radius: 5px;
     text-align: center;
     max-height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #account_recette_create a {
@@ -104,6 +104,7 @@
 
 #account_recette_container_1 p {
     text-align: justify;
+    overflow-y: auto;
 }
 
 #account_recette_link {

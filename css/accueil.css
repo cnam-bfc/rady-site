@@ -99,6 +99,7 @@ En responsive format petit/mobile ou alors utiliser wrap il faudra mettre les re
 .top_recettes_border p {
     text-indent: 10px;
     text-align: justify;
+    overflow-y: auto;
 }
 
 #accueil_top_recette_container {

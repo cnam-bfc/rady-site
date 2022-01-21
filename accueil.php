@@ -54,15 +54,15 @@ try {
                         vos recettes du premier coup.</p>
 
                     <h2 class="accueil_title_h2">Eco-responsabilité</h2>
-                    <p>Rady vous aide à diminuer vos déchets et votre impact environnemental. </br> </p>
+                    <p>Rady vous aide à diminuer vos déchets et votre impact environnemental.</br></p>
                     <p>L’éco responsabilité désigne l’ensemble des actions visant à limiter les impacts sur
                         l’environnement de l’activité quotidienne des collectivités. L’éco responsabilité passe
                         par de nouveaux choix de gestion, d’achats, d’organisation du travail, des investissements et par la sensibilisation.</p>
 
-                    <h2 class="accueil_title_h2">Qui sommes nous</h2>
+                    <h2 class="accueil_title_h2">Qui sommes nous?</h2>
                     <p>Nous sommes un groupe de 8 étudiants, motivés par l’utilisation des nouvelles technologies pour encourager les changements
                         d’habitude. Nous avons développé ce projet pour le défi Chal’enge, porté par nos écoles : l’Institut Image Arts et Métiers,
-                        l’IUT de Chalon-sur-Saône et le CNAM. </p>
+                        l’IUT de Chalon-sur-Saône et le Conservatoire National des Arts et Métiers.</p>
                     <p>Lucas et Alexandra ont travaillés sur les modélisations 3D et les animations, Stanislas et Jérémie ont créés la charte graphique,
                         les logos et la vidéo, Alban et Victor ont développé le site internet et la base de donnée, Jennifer et Eloïse ont développé l’application HoloLens
                         et gérer le projet.</p>
