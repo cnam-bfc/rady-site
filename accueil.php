@@ -31,7 +31,8 @@ try {
         <header><?php include_once('includes/header.php'); ?></header>
 
         <div id="accueil_banniere">
-            <video src="video/pub.mp4" controls poster="img/background_video.jpg" width="500"></video>
+            <!-- <video src="video/pub.mp4" controls poster="img/background_video.jpg" width="500"></video> -->
+            <video src="video/pub.mp4" controls width="500"></video>
         </div>
 
 
