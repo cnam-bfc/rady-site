@@ -342,3 +342,30 @@ fort probable que ça ne soit plus le cas à l'avenir */
     height: 25px;
     border-radius: 3px;
 }
+
+@media all and (max-width: 1100px){
+
+    #recette_main{
+        margin-right: 50px;
+        margin-left: 50px;
+        padding-left: 25px;
+        padding-right: 25px
+    }
+
+}
+
+@media all and (max-width: 800px){
+
+    #recette_main{  
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    #recette_etapes{
+        width: 400px;
+    }
+
+    #recette_create_comment_text{
+        width: 400px;
+    }
+}

@@ -76,7 +76,61 @@
     padding: 5px;
 }
 
-.recettes_nom p,
-.recettes_note p {
+.recettes_nom p, .recettes_note p {
     margin: auto;
+}
+
+@media all and (max-width: 1100px) {
+    .recettes_nom {
+        width: 200px;
+        overflow-y: auto;
+    }
+}
+
+@media all and (max-width: 800px) {
+
+    .recettes_container {
+        flex-direction: column;
+    }
+
+    .recettes_nom {
+        width: auto;
+        height: auto ;
+        min-height: 50px;
+        border-right: none;
+        border-bottom: 1px solid rgb(63, 62, 62);
+    }
+
+    .recettes_note_auteur {
+        flex-direction: row;
+        width: auto;
+        height: auto;
+        justify-content: space-between;
+        border-left: none;
+        border-top: 1px solid rgb(63, 62, 62)
+    }
+
+    #recettes_main {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .recettes_note_auteur p
+    {
+        margin-left:15px;
+    }
+
+    .recettes_note_auteur strong
+    {
+        text-align: right;
+        margin-top: auto;
+        margin-right: 15px;
+        margin-bottom:auto;
+    }
+
+    #recettes_create{
+        text-align: center;
+    }
+
+    
 }
