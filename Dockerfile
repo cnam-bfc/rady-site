@@ -29,6 +29,12 @@ COPY . .
 # Ensure file ownership for source code files
 RUN chown -R www-data:www-data .
 
+# Application environment variables
+ENV MYSQL_HOST=localhost
+ENV MYSQL_DATABASE=rady
+ENV MYSQL_USERNAME=rady
+ENV MYSQL_PASSWORD=password
+
 # Application port (optional)
 EXPOSE 80
 
