@@ -69,7 +69,7 @@ try {
                     <p>Vous n'avez créer aucune recette</p>
                 <?php endif; ?>
 
-                <h3 id="account_recette_create"><a href="recette_create.php" />Créer une recette</h3>
+                <h3 id="account_recette_create"><a href="recette_create.php" />Créer une recette</a></h3>
 
                 <?php foreach ($recettes as $recette) : ?>
                     <a href="recette.php?id=<?php echo ($recette['id']); ?>" id="account_recette_link">
