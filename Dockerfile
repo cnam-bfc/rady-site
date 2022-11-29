@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.1.12-apache
 
 # Set working directory
 WORKDIR /var/www/html
